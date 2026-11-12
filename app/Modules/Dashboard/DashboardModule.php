@@ -84,19 +84,7 @@ class DashboardModule {
         wp_localize_script( 'cf7on-admin', 'cf7on', [
             'nonce'   => wp_create_nonce( 'cf7on_nonce' ),
             'ajaxurl' => admin_url( 'admin-ajax.php' ),
-            'strings' => [
-                'Saving…'        => __( 'Saving…', 'cf7-booster' ),
-                'Sending…'       => __( 'Sending…', 'cf7-booster' ),
-                'Request failed.' => __( 'Request failed.', 'cf7-booster' ),
-                'Resend'         => __( 'Resend', 'cf7-booster' ),
-                'Error'          => __( 'Error', 'cf7-booster' ),
-                'Testing…'       => __( 'Testing…', 'cf7-booster' ),
-                'Failed'         => __( 'Failed', 'cf7-booster' ),
-                'Connected'      => __( 'Connected', 'cf7-booster' ),
-                'Save All Rules' => __( 'Save All Rules', 'cf7-booster' ),
-                'New Rule'       => __( 'New Rule', 'cf7-booster' ),
-                'Delete this rule?' => __( 'Delete this rule?', 'cf7-booster' ),
-            ],
+            'strings' => \CF7ON\Core\AdminTranslations::all(),
         ] );
     }
 
