@@ -19,7 +19,6 @@ class TelegramAdapter extends ChannelAdapter {
         return [
             'chat_id'    => $destination,
             'text'       => $message,
-            'parse_mode' => 'HTML',
         ];
     }
 
@@ -27,7 +26,7 @@ class TelegramAdapter extends ChannelAdapter {
      * Test the bot token and return account info.
      */
     public function testConnection( string $botToken ): array {
-        $response = wp_remote_get(
+        $response = wp_safe_remote_get(
             "https://api.telegram.org/bot{$botToken}/getMe",
             [ 'timeout' => 10 ]
         );
