@@ -95,6 +95,7 @@ namespace CF7ON\Services {
 }
 
 namespace {
+    require_once dirname( __DIR__ ) . '/app/Services/EngineSettings.php';
     require_once dirname( __DIR__ ) . '/app/Services/QueueService.php';
 
     class TestAdapter {
@@ -158,6 +159,14 @@ namespace {
     expect( $queue->resendFailed(3) === 1, 'Manual resend did not retry failed delivery.' );
     expect( \CF7ON\Models\Submission::$rows[3]['status'] === 'delivered', 'Manual resend did not complete.' );
     expect( $queue->resendFailed(3) === 0, 'Already delivered message was resent again.' );
+
+    // Pause switch defers jobs instead of sending while disabled.
+    $GLOBALS['cf7on_test_options']['cf7on_engine']['notifications_paused'] = true;
+    $before = count( $adapter->sent );
+    $queue->processJob( 4 );
+    expect( count( $adapter->sent ) === $before, 'Paused notifications still triggered a send.' );
+    expect( (bool) wp_next_scheduled( 'cf7on_process_queue', [ 4 ] ), 'Paused queue was not rescheduled.' );
+    $GLOBALS['cf7on_test_options']['cf7on_engine']['notifications_paused'] = false;
 
     // Form-specific template wins over the global template.
     \CF7ON\Modules\FormTab\FormTabModule::$settings[4] = [
