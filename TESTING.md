@@ -1,4 +1,4 @@
-# راهنمای تست نسخه آزمایشی 1.2.0-beta1 / Staging Test Plan
+# راهنمای تست نسخه آزمایشی 1.2.0-beta2 / Staging Test Plan
 
 > این نسخه فقط روی شاخه `staging` قرار دارد. تست‌های خودکار PHP/JS جایگزین آزمون واقعی روی وردپرس نیستند.
 
@@ -40,3 +40,14 @@
 Run functional tests against a staging WordPress site with Contact Form 7. Confirm real Telegram/Bale deliveries, rule routing, retry behavior, privacy/CSV safety, admin form-tab saving, and Persian RTL/English LTR presentation.
 
 Do not merge to `main` until the owner approves the results of these checks.
+
+## موارد تازه برای تست / New scenarios
+
+- توقف اعلان‌ها را فعال کنید، یک فرم ثبت کنید و تأیید کنید پیام بیرونی ارسال نمی‌شود؛ سپس توقف را بردارید و اجرای صف را بررسی کنید.
+- در تنظیمات، مقادیر Retry و فاصله ارسال را ذخیره کنید؛ صفحه را بازخوانی کنید و از پایداری مقادیر اطمینان بگیرید.
+- در هر کانال توکن، مقصد و قالب سراسری را ذخیره کنید و روی «ارسال پیام آزمایشی» بزنید؛ باید یک پیام آزمایشی واقعی به اولین مقصد ذخیره‌شده برسد.
+- تعداد روز حذف خودکار را ابتدا روی صفر نگه دارید. برای آزمایش حذف، فقط داده آزمایشی و نسخه پشتیبان داشته باشید؛ پاک‌سازی غیرقابل بازگشت است و به WP-Cron نیاز دارد.
+- داشبورد را در عرض موبایل، زبان انگلیسی و فارسی بررسی کنید و از نمودار ۷ روزه، اعلان‌ها و جداول استفاده کنید.
+- فیلد چندمقداری (checkbox/select) و قوانین ناقص را آزمایش کنید؛ نباید هشدار PHP یا ارسال اشتباه ایجاد کنند.
+
+English: Test the pause/resume flow, persisted values after reload, real sample delivery to the first configured destination, non-destructive default retention, mobile/RTL layout, and array-valued form fields.
