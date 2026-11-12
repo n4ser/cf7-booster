@@ -1,0 +1,27 @@
+/* RTL overrides for the WordPress admin when the site locale is RTL. */
+.rtl .cf7on-wrap,
+.rtl .cf7on-form-tab-wrap {
+    direction: rtl;
+    text-align: right;
+}
+.rtl .cf7on-wrap .form-table th,
+.rtl .cf7on-wrap .form-table td,
+.rtl .cf7on-form-tab-wrap .cf7on-card {
+    text-align: right;
+}
+.rtl .cf7on-wrap input[type="text"],
+.rtl .cf7on-wrap input[type="password"],
+.rtl .cf7on-wrap input[type="number"],
+.rtl .cf7on-form-tab-wrap textarea[name$="_destinations"] {
+    direction: ltr;
+    text-align: left;
+}
+.rtl .cf7on-form-tab-wrap .cf7on-tpl-textarea {
+    direction: rtl;
+    text-align: start;
+}
+.rtl .cf7on-wrap code,
+.rtl .cf7on-form-tab-wrap code {
+    direction: ltr;
+    unicode-bidi: isolate;
+}
