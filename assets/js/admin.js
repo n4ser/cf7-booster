@@ -6,6 +6,10 @@
     /*  UTILITIES                                                             */
     /* ===================================================================== */
 
+    function tr(text) {
+        return (typeof cf7on !== 'undefined' && cf7on.strings && cf7on.strings[text]) || text;
+    }
+
     function showNotice(msg, type) {
         var cls = (type === 'error') ? 'notice-error' : 'notice-success';
         $('#cf7on-notice').empty().append($('<div>').addClass('notice ' + cls + ' is-dismissible').append($('<p>').text(msg)));
@@ -71,11 +75,11 @@
         });
 
         var orig = $btn.text();
-        $btn.prop('disabled', true).text('Saving…');
+        $btn.prop('disabled', true).text(tr('Saving…'));
         $.post(cf7on.ajaxurl, post, function(r) {
             $btn.prop('disabled', false).text(orig);
             r.success ? showNotice(r.data, 'success') : showNotice(r.data || 'Error', 'error');
-        }).fail(function(){ $btn.prop('disabled', false).text(orig); showNotice('Request failed.', 'error'); });
+        }).fail(function(){ $btn.prop('disabled', false).text(orig); showNotice(tr('Request failed.'), 'error'); });
     });
 
     /* ===================================================================== */
@@ -92,10 +96,10 @@
         $(sel).text(' Testing…');
         $.post(cf7on.ajaxurl, { action: action, nonce: cf7on.nonce, bot_token: token }, function(r) {
             if (r.success) {
-                var n = r.data && r.data.bot ? '@' + r.data.bot.username : 'Connected';
+                var n = r.data && r.data.bot ? '@' + r.data.bot.username : tr('Connected');
                 $(sel).html(' <span style="color:#28a745">✓ ' + escHtml(n) + '</span>');
             } else {
-                $(sel).html(' <span style="color:#dc3545">✗ ' + escHtml(r.data || 'Failed') + '</span>');
+                $(sel).html(' <span style="color:#dc3545">✗ ' + escHtml(r.data || tr('Failed')) + '</span>');
             }
         });
     }
@@ -106,10 +110,10 @@
 
     $(document).on('click', '.cf7on-resend', function () {
         var $b = $(this), id = $b.data('id');
-        $b.prop('disabled', true).text('Sending…');
+        $b.prop('disabled', true).text(tr('Sending…'));
         $.post(cf7on.ajaxurl, { action: 'cf7on_resend', nonce: cf7on.nonce, submission_id: id }, function(r) {
-            $b.prop('disabled', false).text('Resend');
-            alert(r.success ? r.data : (r.data || 'Failed'));
+            $b.prop('disabled', false).text(tr('Resend'));
+            alert(r.success ? r.data : (r.data || tr('Failed')));
         });
     });
 
@@ -136,7 +140,7 @@
     $(document).on('click', '#cf7on-add-rule', function () {
         collectRules();
         cf7onRules.push({
-            name: 'New Rule', enabled: true, logic: 'AND',
+            name: tr('New Rule'), enabled: true, logic: 'AND',
             conditions: [{ type: 'field_name', name_operator: 'contains', name_value: '', operator: 'contains', value: '' }],
             actions: [{ channel: 'telegram', destination: '', template: '' }]
         });
@@ -146,15 +150,15 @@
     $(document).on('click', '#cf7on-save-rules', function () {
         collectRules();
         var $b = $(this);
-        $b.prop('disabled', true).text('Saving…');
+        $b.prop('disabled', true).text(tr('Saving…'));
         $.post(cf7on.ajaxurl, { action: 'cf7on_save_rules', nonce: cf7on.nonce, rules: JSON.stringify(cf7onRules) }, function(r) {
-            $b.prop('disabled', false).text('Save All Rules');
+            $b.prop('disabled', false).text(tr('Save All Rules'));
             r.success ? showNotice(r.data || 'Saved!', 'success') : showNotice(r.data || 'Error', 'error');
         });
     });
 
     $(document).on('click', '.cf7on-rule-remove', function () {
-        if (!confirm('Delete this rule?')) return;
+        if (!confirm(tr('Delete this rule?'))) return;
         collectRules();
         cf7onRules.splice(+$(this).data('idx'), 1);
         renderRules();
@@ -487,6 +491,9 @@
 /* ===================================================================== */
 (function ($) {
 'use strict';
+function tr(text) {
+    return (typeof cf7on !== 'undefined' && cf7on.strings && cf7on.strings[text]) || text;
+}
 $(document).on('click', '#cf7on-save-form-tab', function () {
     var $btn    = $(this);
     var formId  = $btn.data('form-id');
@@ -507,7 +514,7 @@ $(document).on('click', '#cf7on-save-form-tab', function () {
     });
 
     var orig = $btn.text();
-    $btn.prop('disabled', true).text('Saving…');
+    $btn.prop('disabled', true).text(tr('Saving…'));
     $result.text('');
 
     $.post(cf7on.ajaxurl, post, function (r) {
