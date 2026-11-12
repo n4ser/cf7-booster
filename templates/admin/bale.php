@@ -48,13 +48,26 @@ $destinations = implode( "\n", (array) ( $options['destinations'] ?? [] ) );
                     <p class="description"><?php esc_html_e( 'Used when a form has no custom destinations set.', 'cf7-booster' ); ?></p>
                 </td>
             </tr>
+            <div class="cf7on-channel-template">
+                <label for="ba_template"><strong><?php esc_html_e( 'Default message template', 'cf7-booster' ); ?></strong></label>
+                <textarea class="large-text code" id="ba_template" rows="6"><?php echo esc_textarea( $options['template'] ?? '' ); ?></textarea>
+                <p class="description"><?php esc_html_e( 'Use placeholders such as {name}, {form_name}, {all_fields}. Form-specific templates override this default.', 'cf7-booster' ); ?></p>
+            </div>
         </table>
 
         <button type="button" class="button button-primary cf7on-save" data-action="cf7on_save_bale"
-                data-fields="ba_enabled,ba_token,ba_destinations"
-                data-map='{"ba_enabled":"enabled","ba_token":"bot_token","ba_destinations":"destinations"}'>
+                data-fields="ba_enabled,ba_token,ba_destinations,ba_template"
+                data-map='{"ba_enabled":"enabled","ba_token":"bot_token","ba_destinations":"destinations","ba_template":"template"}'>
             <?php esc_html_e( 'Save Bale Settings', 'cf7-booster' ); ?>
         </button>
+        <div class="cf7on-channel-test">
+            <button type="button" class="button button-secondary" data-cf7on-send-test="bale" aria-controls="cf7on-send-test-bale-result">
+                <span class="dashicons dashicons-controls-play" aria-hidden="true"></span>
+                <?php esc_html_e( 'Send test message', 'cf7-booster' ); ?>
+            </button>
+            <span id="cf7on-send-test-bale-result" role="status" aria-live="polite" class="cf7on-channel-test-result"></span>
+        </div>
+        <p class="description"><?php esc_html_e( 'Sends a harmless sample to the first saved destination. Save the settings before testing.', 'cf7-booster' ); ?></p>
     </div>
 
     <?php
