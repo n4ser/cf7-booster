@@ -26,7 +26,6 @@ class Plugin {
 
     private function registerServices(): void {
         $this->services = [
-            'db'         => new \CF7ON\Services\DatabaseService(),
             'queue'      => new \CF7ON\Services\QueueService(),
             'cf7'        => new \CF7ON\Modules\CF7\CF7Integration(),
             'telegram'   => new \CF7ON\Modules\Telegram\TelegramAdapter(),
@@ -34,7 +33,6 @@ class Plugin {
             'automation' => new \CF7ON\Modules\Automation\AutomationEngine(),
             'dashboard'  => new \CF7ON\Modules\Dashboard\DashboardModule(),
             'form_tab'   => new \CF7ON\Modules\FormTab\FormTabModule(),
-            'logs'       => new \CF7ON\Modules\Logs\LogsModule(),
         ];
 
         $this->services['cf7']->setQueue( $this->services['queue'] );
