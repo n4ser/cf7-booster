@@ -108,7 +108,9 @@ class FormTabModule {
         $global_ba = get_option( 'cf7on_bale', [] );
 
         // Default template
-        $default_tpl = "📩 فرم: {form_name}\n\nنام: {name}\nتلفن: {phone}\nایمیل: {email}\n\nپیام:\n{message}\n\nتاریخ: {submission_date}";
+        $default_tpl = get_user_locale() === 'fa_IR'
+            ? "📩 فرم: {form_name}\n\nنام: {name}\nتلفن: {phone}\nایمیل: {email}\n\nپیام:\n{message}\n\nتاریخ: {submission_date}"
+            : "📩 Form: {form_name}\n\nName: {name}\nPhone: {phone}\nEmail: {email}\n\nMessage:\n{message}\n\nDate: {submission_date}";
 
         // This form's field names
         $field_names = [];
