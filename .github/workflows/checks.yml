@@ -22,7 +22,7 @@ jobs:
           php-version: ${{ matrix.php }}
       - name: PHP syntax
         run: |
-          find app templates -type f -name '*.php' -print0 | xargs -0 -n1 php -l
+          find app templates tests -type f -name '*.php' -print0 | xargs -0 -n1 php -l
           php -l cf7-booster.php
       - name: JavaScript syntax
         run: node --check assets/js/admin.js
@@ -30,3 +30,5 @@ jobs:
         run: php tests/queue-smoke.php
       - name: Messaging adapter smoke tests
         run: php tests/channel-smoke.php
+      - name: Settings and retention smoke tests
+        run: php tests/settings-smoke.php
