@@ -108,6 +108,12 @@ class Submission {
             $where   .= ' AND status = %s';
             $values[] = sanitize_key( $args['status'] );
         }
+        if ( ! empty( $args['search'] ) ) {
+            $where   .= ' AND (form_name LIKE %s OR fields LIKE %s)';
+            $like     = '%' . $wpdb->esc_like( $args['search'] ) . '%';
+            $values[] = $like;
+            $values[] = $like;
+        }
         if ( ! empty( $args['date_from'] ) ) {
             $where   .= ' AND created_at >= %s';
             $values[] = sanitize_text_field( $args['date_from'] );
