@@ -193,6 +193,7 @@ class FormTabModule {
     /* ------------------------------------------------------------------ */
 
     public static function getFormSettings( int $form_id ): array {
-        return get_option( 'cf7on_form_' . $form_id, [] );
+        $settings = get_option( 'cf7on_form_' . $form_id, [] );
+        return is_array( $settings ) ? $settings : [];
     }
 }
