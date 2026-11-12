@@ -3,7 +3,7 @@
  * Plugin Name:       CF7 Booster
  * Plugin URI:        https://inaser.ir/plugin/cf7-booster
  * Description:       Supercharge Contact Form 7 — per-form Telegram & Bale notifications, automation rules, submission management, and delivery logs.
- * Version:           1.2.0-beta1
+ * Version:           1.2.0-beta2
  * Author:            inaser.ir
  * Author URI:        https://inaser.ir
  * License:           GPL v2 or later
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'CF7ON_VERSION',  '1.2.0-beta1' );
+define( 'CF7ON_VERSION',  '1.2.0-beta2' );
 define( 'CF7ON_FILE',     __FILE__ );
 define( 'CF7ON_PATH',     plugin_dir_path( __FILE__ ) );
 define( 'CF7ON_URL',      plugin_dir_url( __FILE__ ) );
