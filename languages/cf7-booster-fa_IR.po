@@ -1,0 +1,352 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CF7 Booster 1.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-13 00:00+0000\n"
+"PO-Revision-Date: 2026-11-13 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Persian\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "(click a placeholder above to insert it)"
+msgstr "(برای درج متغیر روی آن کلیک کنید)"
+
+msgid "(one Chat ID or @channel per line — overrides global destinations)"
+msgstr "(هر شناسه چت یا @کانال در یک خط؛ جایگزین مقصدهای سراسری می‌شود)"
+
+msgid "(one Chat ID or @channel per line)"
+msgstr "(در هر خط یک شناسه چت یا @کانال)"
+
+msgid "Action"
+msgstr "عمل"
+
+msgid "Actions"
+msgstr "عملیات"
+
+msgid "Add Rule"
+msgstr "افزودن قانون"
+
+msgid "All Channels"
+msgstr "همه کانال‌ها"
+
+msgid "All Forms"
+msgstr "همه فرم‌ها"
+
+msgid "All Levels"
+msgstr "همه سطوح"
+
+msgid "All Statuses"
+msgstr "همه وضعیت‌ها"
+
+msgid "Asynchronous (recommended):"
+msgstr "غیرهم‌زمان (پیشنهادی):"
+
+msgid "Asynchronous — background (recommended)"
+msgstr "غیرهم‌زمان — پس‌زمینه (پیشنهادی)"
+
+msgid "Automation"
+msgstr "خودکارسازی"
+
+msgid "Automation Rules"
+msgstr "قوانین خودکارسازی"
+
+msgid "Available Placeholders"
+msgstr "متغیرهای قابل استفاده"
+
+msgid "Bale"
+msgstr "بله"
+
+msgid "Bale settings saved."
+msgstr "تنظیمات بله ذخیره شد."
+
+msgid "Bale — Global Settings"
+msgstr "بله — تنظیمات سراسری"
+
+msgid "Bot Configuration"
+msgstr "پیکربندی ربات"
+
+msgid "Bot Token"
+msgstr "توکن ربات"
+
+msgid "Bot: configured globally"
+msgstr "ربات: در تنظیمات سراسری تنظیم شده"
+
+msgid "CF7 Booster"
+msgstr "فرم‌رسان"
+
+msgid "CF7 Booster — Settings"
+msgstr "فرم‌رسان — تنظیمات"
+
+msgid "Channel"
+msgstr "کانال"
+
+msgid "Configure"
+msgstr "پیکربندی"
+
+msgid "Connected"
+msgstr "متصل"
+
+msgid "Contact for Support"
+msgstr "تماس با پشتیبانی"
+
+msgid "Dashboard"
+msgstr "داشبورد"
+
+msgid "Date"
+msgstr "تاریخ"
+
+msgid "Default Destinations"
+msgstr "مقصدهای پیش‌فرض"
+
+msgid "Delete this rule?"
+msgstr "این قانون حذف شود؟"
+
+msgid "Delivery Logs"
+msgstr "گزارش تحویل"
+
+msgid "Destinations"
+msgstr "مقصدها"
+
+msgid "Documentation"
+msgstr "مستندات"
+
+msgid "Enable Bale (global)"
+msgstr "فعال‌کردن بله (سراسری)"
+
+msgid "Enable Bale for this form"
+msgstr "فعال‌کردن بله برای این فرم"
+
+msgid "Enable Delivery Logs"
+msgstr "فعال‌سازی گزارش تحویل"
+
+msgid "Enable Telegram (global)"
+msgstr "فعال‌کردن تلگرام (سراسری)"
+
+msgid "Enable Telegram for this form"
+msgstr "فعال‌کردن تلگرام برای این فرم"
+
+msgid "Error"
+msgstr "خطا"
+
+msgid "Export CSV"
+msgstr "دریافت CSV"
+
+msgid "Failed"
+msgstr "ناموفق"
+
+msgid "Failed notifications retried."
+msgstr "اعلان‌های ناموفق دوباره تلاش شدند."
+
+msgid "Field Name Pattern:"
+msgstr "الگوی نام فیلد:"
+
+msgid "Fields Preview"
+msgstr "پیش‌نمایش فیلدها"
+
+msgid "Filter"
+msgstr "فیلتر"
+
+msgid "For bugs, feature requests, or custom development, visit"
+msgstr "برای گزارش خطا، پیشنهاد قابلیت یا توسعه اختصاصی مراجعه کنید به"
+
+msgid "Form"
+msgstr "فرم"
+
+msgid "Form settings saved."
+msgstr "تنظیمات فرم ذخیره شد."
+
+msgid "FormRelay CF7"
+msgstr "فرم‌رسان"
+
+msgid "Get your token from @BotFather on Telegram."
+msgstr "توکن را از @BotFather در تلگرام دریافت کنید."
+
+msgid "Global destinations:"
+msgstr "مقصدهای سراسری:"
+
+msgid "Go to Forms"
+msgstr "رفتن به فرم‌ها"
+
+msgid "How many times to retry a failed delivery. Set to 0 to disable retries."
+msgstr "تعداد تلاش مجدد در صورت خطا؛ برای غیرفعال‌سازی، صفر وارد کنید."
+
+msgid "How rules work:"
+msgstr "نحوه عملکرد قوانین:"
+
+msgid "IP"
+msgstr "آی‌پی"
+
+msgid "Level"
+msgstr "سطح"
+
+msgid "Logs"
+msgstr "گزارش‌ها"
+
+msgid "Mask Sensitive Data"
+msgstr "پنهان‌سازی داده‌های حساس"
+
+msgid "Mask phone numbers and emails in Logs (e.g. 0912******34)"
+msgstr "پنهان‌کردن شماره تلفن و ایمیل در گزارش‌ها (مثلاً 0912******34)"
+
+msgid "Master switch for Bale across all forms."
+msgstr "کلید اصلی بله برای همه فرم‌ها"
+
+msgid "Max Retry Attempts"
+msgstr "حداکثر تلاش مجدد"
+
+msgid "Message"
+msgstr "پیام"
+
+msgid "Message Template"
+msgstr "قالب پیام"
+
+msgid "New Rule"
+msgstr "قانون جدید"
+
+msgid "No failed notifications are available for retry."
+msgstr "اعلان ناموفقی برای ارسال مجدد وجود ندارد."
+
+msgid "No log entries found."
+msgstr "گزارشی یافت نشد."
+
+msgid "No submissions found."
+msgstr "ارسالی یافت نشد."
+
+msgid "No submissions yet."
+msgstr "هنوز فرمی ارسال نشده است."
+
+msgid "Notification Engine"
+msgstr "موتور اعلان"
+
+msgid "Notification re-sent."
+msgstr "اعلان دوباره ارسال شد."
+
+msgid "Or click the main \"Save\" button of CF7 to save everything at once."
+msgstr "یا برای ذخیره همه تنظیمات، روی دکمه اصلی «ذخیره» فرم کلیک کنید."
+
+msgid "Per-form Settings"
+msgstr "تنظیمات اختصاصی فرم"
+
+msgid "Plugin Page"
+msgstr "صفحه افزونه"
+
+msgid "Queue Mode"
+msgstr "حالت صف ارسال"
+
+msgid "Recent Submissions"
+msgstr "ارسال‌های اخیر"
+
+msgid "Record every delivery attempt in the Logs table"
+msgstr "ثبت هر تلاش برای تحویل در جدول گزارش‌ها"
+
+msgid "Request failed."
+msgstr "درخواست ناموفق بود."
+
+msgid "Resend"
+msgstr "ارسال مجدد"
+
+msgid "Retry Interval (seconds)"
+msgstr "فاصله تلاش مجدد (ثانیه)"
+
+msgid "Rules saved."
+msgstr "قوانین ذخیره شدند."
+
+msgid "Save All Rules"
+msgstr "ذخیره همه قوانین"
+
+msgid "Save Bale Settings"
+msgstr "ذخیره تنظیمات بله"
+
+msgid "Save CF7 Booster Settings"
+msgstr "ذخیره تنظیمات فرم‌رسان"
+
+msgid "Save Settings"
+msgstr "ذخیره تنظیمات"
+
+msgid "Save Telegram Settings"
+msgstr "ذخیره تنظیمات تلگرام"
+
+msgid "Saving…"
+msgstr "در حال ذخیره…"
+
+msgid "Search…"
+msgstr "جست‌وجو…"
+
+msgid "Seconds to wait between each retry."
+msgstr "فاصله زمانی بین تلاش‌های مجدد، به ثانیه"
+
+msgid "Sending…"
+msgstr "در حال ارسال…"
+
+msgid "Settings"
+msgstr "تنظیمات"
+
+msgid "Settings saved."
+msgstr "تنظیمات ذخیره شد."
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Submissions"
+msgstr "ارسال‌های فرم"
+
+msgid "Supercharge Contact Form 7 with Telegram & Bale notifications, per-form settings, automation rules, and submission management."
+msgstr "افزودن اعلان‌های تلگرام و بله، تنظیمات اختصاصی هر فرم، قوانین خودکارسازی و مدیریت ارسال‌ها به Contact Form 7"
+
+msgid "Synchronous — immediate (slower)"
+msgstr "هم‌زمان — فوری (کندتر)"
+
+msgid "Synchronous:"
+msgstr "هم‌زمان:"
+
+msgid "Telegram"
+msgstr "تلگرام"
+
+msgid "Telegram settings saved."
+msgstr "تنظیمات تلگرام ذخیره شد."
+
+msgid "Telegram — Global Settings"
+msgstr "تلگرام — تنظیمات سراسری"
+
+msgid "Test Connection"
+msgstr "تست اتصال"
+
+msgid "Testing…"
+msgstr "در حال آزمایش…"
+
+msgid "This Week"
+msgstr "این هفته"
+
+msgid "This form's fields:"
+msgstr "فیلدهای این فرم:"
+
+msgid "Time"
+msgstr "زمان"
+
+msgid "Today"
+msgstr "امروز"
+
+msgid "Total Submissions"
+msgstr "کل ارسال‌ها"
+
+msgid "Unable to generate CSV."
+msgstr "ایجاد فایل CSV ممکن نیست."
+
+msgid "Used when a form has no custom destinations set."
+msgstr "وقتی برای فرم مقصد اختصاصی مشخص نشده باشد، استفاده می‌شود."
+
+msgid "View All Submissions →"
+msgstr "نمایش همه ارسال‌ها ←"
+
+msgid "leave blank to use them"
+msgstr "برای استفاده از آن‌ها خالی بگذارید"
+
+msgid "or open a support request."
+msgstr "یا درخواست پشتیبانی ثبت کنید."
+
+msgid "⚠ Bot token not set globally"
+msgstr "⚠ توکن ربات در تنظیمات سراسری وارد نشده است"
