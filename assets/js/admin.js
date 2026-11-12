@@ -117,6 +117,33 @@
     }
 
     /* ===================================================================== */
+    /*  REAL TEST MESSAGE — sent only to the first saved channel destination */
+    /* ===================================================================== */
+    $(document).on('click', '[data-cf7on-send-test]', function () {
+        var $button = $(this);
+        var channel = String($button.attr('data-cf7on-send-test') || '');
+        if (channel !== 'telegram' && channel !== 'bale') return;
+
+        var $feedback = $('#cf7on-send-test-' + channel + '-result');
+        var original = $button.text();
+        $button.prop('disabled', true).text(tr('Sending…'));
+        $feedback.text(tr('Sending…'));
+
+        $.post(cf7on.ajaxurl, {
+            action: 'cf7on_send_test',
+            nonce: cf7on.nonce,
+            channel: channel
+        }, function (response) {
+            $feedback.css('color', response.success ? '#167345' : '#ad303b');
+            $feedback.text(response.data || tr('Request failed.'));
+        }).fail(function () {
+            $feedback.css('color', '#ad303b').text(tr('Request failed.'));
+        }).always(function () {
+            $button.prop('disabled', false).text(original);
+        });
+    });
+
+    /* ===================================================================== */
     /*  RESEND                                                                */
     /* ===================================================================== */
 
