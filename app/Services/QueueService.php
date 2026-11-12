@@ -156,7 +156,8 @@ class QueueService {
             if ( $delivery['status'] !== 'failed' ) {
                 continue;
             }
-            $this->retryDelivery( (int) $delivery['id'], 1 );
+            // A manual resend is a new attempt, even when automatic retries are disabled.
+            $this->retryDelivery( (int) $delivery['id'], 0 );
             ++$count;
         }
         return $count;
