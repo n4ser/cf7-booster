@@ -28,8 +28,8 @@ class AutomationEngine {
         $rules   = get_option( 'cf7on_automation_rules', [] );
         $targets = [];
 
-        foreach ( $rules as $rule ) {
-            if ( empty( $rule['enabled'] ) ) {
+        foreach ( (array) $rules as $rule ) {
+            if ( ! is_array( $rule ) || empty( $rule['enabled'] ) ) {
                 continue;
             }
 
@@ -39,10 +39,19 @@ class AutomationEngine {
 
             if ( ! empty( $conditions ) && $this->evaluateConditions( $conditions, $logic, $submission ) ) {
                 foreach ( (array) ( $rule['actions'] ?? [] ) as $action ) {
+                    if ( ! is_array( $action ) ) {
+                        continue;
+                    }
+                    $channel = sanitize_key( $action['channel'] ?? '' );
+                    $destination = sanitize_text_field( $action['destination'] ?? '' );
+                    // An unfinished action must not suppress per-form/default routing.
+                    if ( ! in_array( $channel, [ 'telegram', 'bale' ], true ) || $destination === '' ) {
+                        continue;
+                    }
                     $targets[] = [
-                        'channel'     => sanitize_key( $action['channel'] ?? '' ),
-                        'destination' => sanitize_text_field( $action['destination'] ?? '' ),
-                        'template'    => $action['template'] ?? '',  // optional per-action template override
+                        'channel'     => $channel,
+                        'destination' => $destination,
+                        'template'    => is_string( $action['template'] ?? '' ) ? $action['template'] : '',
                     ];
                 }
             }
