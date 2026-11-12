@@ -1,0 +1,538 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: CF7 Booster\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-11 08:43+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.4; wp-7.0; php-8.4.20\n"
+"X-Domain: cf7-booster"
+
+#: templates/admin/dashboard.php:44
+msgid "#"
+msgstr ""
+
+#: templates/admin/form-tab.php:97
+msgid "(click a placeholder above to insert it)"
+msgstr ""
+
+#: templates/admin/form-tab.php:81
+msgid "(one Chat ID or @channel per line — overrides global destinations)"
+msgstr ""
+
+#: templates/admin/form-tab.php:126
+msgid "(one Chat ID or @channel per line)"
+msgstr ""
+
+#: templates/admin/telegram.php:76 templates/admin/bale.php:71
+msgid "Action"
+msgstr ""
+
+#: templates/admin/submissions.php:40 templates/admin/dashboard.php:48
+msgid "Actions"
+msgstr ""
+
+#: templates/admin/automation.php:44
+msgid "Add Rule"
+msgstr ""
+
+#: templates/admin/settings.php:23
+msgid ""
+"After the visitor submits the form, WordPress immediately returns the "
+"success message. The Telegram/Bale notification is sent in the background a "
+"few seconds later via WP-Cron. The visitor never waits for the API call — "
+"best for almost all sites."
+msgstr ""
+
+#: templates/admin/logs.php:8
+msgid "All Channels"
+msgstr ""
+
+#: templates/admin/submissions.php:10
+msgid "All Forms"
+msgstr ""
+
+#: templates/admin/logs.php:13
+msgid "All Levels"
+msgstr ""
+
+#: templates/admin/submissions.php:18
+msgid "All Statuses"
+msgstr ""
+
+#: templates/admin/settings.php:30
+msgid ""
+"Async mode requires WP-Cron. If you have DISABLE_WP_CRON = true in wp-config."
+"php, use Synchronous or set up a real server cron job."
+msgstr ""
+
+#: templates/admin/settings.php:22
+msgid "Asynchronous (recommended):"
+msgstr ""
+
+#: templates/admin/settings.php:14
+msgid "Asynchronous — background (recommended)"
+msgstr ""
+
+#: app/Modules/Dashboard/DashboardModule.php:46
+msgid "Automation"
+msgstr ""
+
+#: templates/admin/automation.php:27
+msgid "Automation Rules"
+msgstr ""
+
+#: templates/admin/form-tab.php:35
+msgid "Available Placeholders"
+msgstr ""
+
+#: templates/admin/form-tab.php:109 templates/admin/telegram.php:75
+#: templates/admin/bale.php:70 app/Modules/Dashboard/DashboardModule.php:45
+msgid "Bale"
+msgstr ""
+
+#: templates/admin/bale.php:36
+msgid "Bale bot token"
+msgstr ""
+
+#: app/Modules/Dashboard/DashboardModule.php:164
+msgid "Bale settings saved."
+msgstr ""
+
+#: templates/admin/bale.php:8
+msgid "Bale — Global Settings"
+msgstr ""
+
+#: templates/admin/telegram.php:22 templates/admin/bale.php:22
+msgid "Bot Configuration"
+msgstr ""
+
+#: templates/admin/telegram.php:32 templates/admin/bale.php:32
+msgid "Bot Token"
+msgstr ""
+
+#: templates/admin/form-tab.php:66 templates/admin/form-tab.php:111
+msgid "Bot: configured globally"
+msgstr ""
+
+#. Name of the plugin
+#: templates/admin/settings.php:85 templates/admin/dashboard.php:3
+#: app/Modules/Dashboard/DashboardModule.php:32
+#: app/Modules/Dashboard/DashboardModule.php:33
+msgid "CF7 Booster"
+msgstr ""
+
+#: templates/admin/settings.php:3
+msgid "CF7 Booster — Settings"
+msgstr ""
+
+#: templates/admin/logs.php:28
+msgid "Channel"
+msgstr ""
+
+#: templates/admin/telegram.php:70
+msgid ""
+"Click a form to configure its Telegram message template and destinations."
+msgstr ""
+
+#: templates/admin/telegram.php:89 templates/admin/bale.php:82
+msgid "Configure"
+msgstr ""
+
+#: templates/admin/settings.php:95
+msgid "Contact for Support"
+msgstr ""
+
+#: app/Modules/Dashboard/DashboardModule.php:42
+msgid "Dashboard"
+msgstr ""
+
+#: templates/admin/submissions.php:39 templates/admin/dashboard.php:47
+msgid "Date"
+msgstr ""
+
+#: templates/admin/telegram.php:45 templates/admin/bale.php:44
+msgid "Default Destinations"
+msgstr ""
+
+#: templates/admin/logs.php:3
+msgid "Delivery Logs"
+msgstr ""
+
+#: templates/admin/form-tab.php:80 templates/admin/form-tab.php:125
+msgid "Destinations"
+msgstr ""
+
+#: templates/admin/settings.php:92
+msgid "Documentation"
+msgstr ""
+
+#: templates/admin/automation.php:37
+msgid ""
+"Each rule can send to multiple channels and destinations simultaneously."
+msgstr ""
+
+#: templates/admin/bale.php:25
+msgid "Enable Bale (global)"
+msgstr ""
+
+#: templates/admin/form-tab.php:120
+msgid "Enable Bale for this form"
+msgstr ""
+
+#: templates/admin/settings.php:52
+msgid "Enable Delivery Logs"
+msgstr ""
+
+#: templates/admin/telegram.php:25
+msgid "Enable Telegram (global)"
+msgstr ""
+
+#: templates/admin/form-tab.php:75
+msgid "Enable Telegram for this form"
+msgstr ""
+
+#: templates/admin/submissions.php:25
+msgid "Export CSV"
+msgstr ""
+
+#: templates/admin/dashboard.php:31
+msgid "Failed"
+msgstr ""
+
+#: templates/admin/automation.php:35
+msgid "Field Name Pattern:"
+msgstr ""
+
+#: templates/admin/submissions.php:36
+msgid "Fields Preview"
+msgstr ""
+
+#: templates/admin/logs.php:18 templates/admin/submissions.php:23
+msgid "Filter"
+msgstr ""
+
+#: templates/admin/settings.php:99
+msgid "For bugs, feature requests, or custom development, visit"
+msgstr ""
+
+#: templates/admin/submissions.php:35 templates/admin/telegram.php:73
+#: templates/admin/bale.php:68 templates/admin/dashboard.php:45
+msgid "Form"
+msgstr ""
+
+#: app/Modules/FormTab/FormTabModule.php:147
+msgid "Form settings saved."
+msgstr ""
+
+#: templates/admin/telegram.php:41
+msgid "Get your token from @BotFather on Telegram."
+msgstr ""
+
+#: templates/admin/form-tab.php:87 templates/admin/form-tab.php:132
+msgid "Global destinations:"
+msgstr ""
+
+#: templates/admin/telegram.php:17 templates/admin/bale.php:17
+msgid "Go to Forms"
+msgstr ""
+
+#: templates/admin/settings.php:40
+msgid "How many times to retry a failed delivery. Set to 0 to disable retries."
+msgstr ""
+
+#: templates/admin/automation.php:31
+msgid "How rules work:"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://inaser.ir"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://inaser.ir/plugin/cf7-booster"
+msgstr ""
+
+#: templates/admin/automation.php:34
+msgid ""
+"If NO rules match, the global Telegram/Bale settings are used as fallback."
+msgstr ""
+
+#. Author of the plugin
+msgid "inaser.ir"
+msgstr ""
+
+#: templates/admin/submissions.php:37
+msgid "IP"
+msgstr ""
+
+#: templates/admin/form-tab.php:89
+msgid "leave blank to use them"
+msgstr ""
+
+#: templates/admin/logs.php:29
+msgid "Level"
+msgstr ""
+
+#: app/Modules/Dashboard/DashboardModule.php:47
+msgid "Logs"
+msgstr ""
+
+#: templates/admin/settings.php:67
+msgid "Mask phone numbers and emails in Logs (e.g. 0912******34)"
+msgstr ""
+
+#: templates/admin/settings.php:62
+msgid "Mask Sensitive Data"
+msgstr ""
+
+#: templates/admin/bale.php:28
+msgid "Master switch for Bale across all forms."
+msgstr ""
+
+#: templates/admin/telegram.php:28
+msgid ""
+"Master switch. Individual forms can also be enabled/disabled from their own "
+"tab."
+msgstr ""
+
+#: templates/admin/settings.php:36
+msgid "Max Retry Attempts"
+msgstr ""
+
+#: templates/admin/logs.php:30
+msgid "Message"
+msgstr ""
+
+#: templates/admin/form-tab.php:96 templates/admin/form-tab.php:140
+msgid "Message Template"
+msgstr ""
+
+#: templates/admin/logs.php:22
+msgid "No log entries found."
+msgstr ""
+
+#: templates/admin/submissions.php:29
+msgid "No submissions found."
+msgstr ""
+
+#: templates/admin/dashboard.php:39
+msgid "No submissions yet."
+msgstr ""
+
+#: templates/admin/settings.php:7
+msgid "Notification Engine"
+msgstr ""
+
+#: app/Modules/Dashboard/DashboardModule.php:263
+msgid "Notification re-sent."
+msgstr ""
+
+#: templates/admin/telegram.php:50
+msgid ""
+"One Chat ID or @channel per line. Used when a form has no custom "
+"destinations set."
+msgstr ""
+
+#: templates/admin/form-tab.php:158
+msgid "Or click the main \"Save\" button of CF7 to save everything at once."
+msgstr ""
+
+#: templates/admin/settings.php:101
+msgid "or open a support request."
+msgstr ""
+
+#: templates/admin/telegram.php:69 templates/admin/bale.php:65
+msgid "Per-form Settings"
+msgstr ""
+
+#: templates/admin/settings.php:89
+msgid "Plugin Page"
+msgstr ""
+
+#: templates/admin/settings.php:10
+msgid "Queue Mode"
+msgstr ""
+
+#: templates/admin/dashboard.php:37
+msgid "Recent Submissions"
+msgstr ""
+
+#: templates/admin/settings.php:57
+msgid "Record every delivery attempt in the Logs table"
+msgstr ""
+
+#: templates/admin/submissions.php:60 templates/admin/dashboard.php:60
+msgid "Resend"
+msgstr ""
+
+#: templates/admin/settings.php:44
+msgid "Retry Interval (seconds)"
+msgstr ""
+
+#: templates/admin/automation.php:33
+msgid ""
+"Rules are checked top-to-bottom. ALL matching rules fire (not just the first)"
+"."
+msgstr ""
+
+#: app/Modules/Dashboard/DashboardModule.php:236
+msgid "Rules saved."
+msgstr ""
+
+#: templates/admin/automation.php:45
+msgid "Save All Rules"
+msgstr ""
+
+#: templates/admin/bale.php:56
+msgid "Save Bale Settings"
+msgstr ""
+
+#: templates/admin/form-tab.php:154
+msgid "Save CF7 Booster Settings"
+msgstr ""
+
+#: templates/admin/settings.php:76
+msgid "Save Settings"
+msgstr ""
+
+#: templates/admin/telegram.php:59
+msgid "Save Telegram Settings"
+msgstr ""
+
+#: templates/admin/submissions.php:8
+msgid "Search…"
+msgstr ""
+
+#: templates/admin/settings.php:48
+msgid "Seconds to wait between each retry."
+msgstr ""
+
+#: app/Modules/Dashboard/DashboardModule.php:48
+msgid "Settings"
+msgstr ""
+
+#: app/Modules/Dashboard/DashboardModule.php:177
+msgid "Settings saved."
+msgstr ""
+
+#: templates/admin/submissions.php:38 templates/admin/dashboard.php:46
+msgid "Status"
+msgstr ""
+
+#: templates/admin/submissions.php:3
+#: app/Modules/Dashboard/DashboardModule.php:43
+msgid "Submissions"
+msgstr ""
+
+#: templates/admin/settings.php:86
+msgid ""
+"Supercharge Contact Form 7 with Telegram & Bale notifications, per-form "
+"settings, automation rules, and submission management."
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Supercharge Contact Form 7 — per-form Telegram & Bale notifications, "
+"automation rules, submission management, and delivery logs."
+msgstr ""
+
+#: templates/admin/settings.php:17
+msgid "Synchronous — immediate (slower)"
+msgstr ""
+
+#: templates/admin/settings.php:26
+msgid "Synchronous:"
+msgstr ""
+
+#: templates/admin/bale.php:15
+msgid "tab of each form."
+msgstr ""
+
+#: templates/admin/telegram.php:15
+msgid "tab."
+msgstr ""
+
+#: templates/admin/form-tab.php:64 templates/admin/telegram.php:74
+#: templates/admin/bale.php:69 app/Modules/Dashboard/DashboardModule.php:44
+msgid "Telegram"
+msgstr ""
+
+#: app/Modules/Dashboard/DashboardModule.php:152
+msgid "Telegram settings saved."
+msgstr ""
+
+#: templates/admin/telegram.php:8
+msgid "Telegram — Global Settings"
+msgstr ""
+
+#: templates/admin/telegram.php:38 templates/admin/bale.php:38
+msgid "Test Connection"
+msgstr ""
+
+#: templates/admin/settings.php:27
+msgid ""
+"The API call happens during the form submission itself. If Telegram/Bale is "
+"slow or unreachable, the visitor waits. Use only if WP-Cron is disabled on "
+"your server."
+msgstr ""
+
+#: templates/admin/form-tab.php:44
+msgid "This form's fields:"
+msgstr ""
+
+#: templates/admin/bale.php:14
+msgid ""
+"This page configures the global Bale bot. Per-form templates and "
+"destinations are managed in the"
+msgstr ""
+
+#: templates/admin/telegram.php:14
+msgid ""
+"This page configures the global Telegram bot token and default destinations. "
+"To set a custom message template or per-form destinations, open any CF7 form "
+"and use the"
+msgstr ""
+
+#: templates/admin/dashboard.php:24
+msgid "This Week"
+msgstr ""
+
+#: templates/admin/logs.php:27
+msgid "Time"
+msgstr ""
+
+#: templates/admin/dashboard.php:17
+msgid "Today"
+msgstr ""
+
+#: templates/admin/dashboard.php:10
+msgid "Total Submissions"
+msgstr ""
+
+#: templates/admin/automation.php:36
+msgid ""
+"Use this to match cross-form fields. Example: name contains \"radio\" AND "
+"value contains \"sale\" — this works even if the radio field is called radio-"
+"289 on one form and radio-389 on another."
+msgstr ""
+
+#: templates/admin/bale.php:48
+msgid "Used when a form has no custom destinations set."
+msgstr ""
+
+#: templates/admin/dashboard.php:69
+msgid "View All Submissions →"
+msgstr ""
+
+#: templates/admin/form-tab.php:68 templates/admin/form-tab.php:113
+msgid "⚠ Bot token not set globally"
+msgstr ""
