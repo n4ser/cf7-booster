@@ -8,11 +8,11 @@ class Installer {
     public static function activate(): void {
         self::createTables();
         self::setDefaultOptions();
-        flush_rewrite_rules();
     }
 
     public static function deactivate(): void {
         wp_clear_scheduled_hook( 'cf7on_process_queue' );
+        wp_clear_scheduled_hook( 'cf7on_retry_delivery' );
         flush_rewrite_rules();
     }
 
@@ -20,7 +20,7 @@ class Installer {
         global $wpdb;
         $charset = $wpdb->get_charset_collate();
 
-        $submissions = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}cf7on_submissions (
+        $submissions = "CREATE TABLE {$wpdb->prefix}cf7on_submissions (
             id           BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
             form_id      INT(11)    NOT NULL,
             form_name    VARCHAR(255) NOT NULL DEFAULT '',
@@ -36,7 +36,7 @@ class Installer {
             KEY created_at (created_at)
         ) $charset;";
 
-        $deliveries = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}cf7on_deliveries (
+        $deliveries = "CREATE TABLE {$wpdb->prefix}cf7on_deliveries (
             id              BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
             submission_id   BIGINT(20) UNSIGNED NOT NULL,
             channel         VARCHAR(50) NOT NULL,
@@ -52,7 +52,7 @@ class Installer {
             KEY status (status)
         ) $charset;";
 
-        $logs = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}cf7on_logs (
+        $logs = "CREATE TABLE {$wpdb->prefix}cf7on_logs (
             id            BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
             delivery_id   BIGINT(20) UNSIGNED DEFAULT NULL,
             channel       VARCHAR(50) NOT NULL,
