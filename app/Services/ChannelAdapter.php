@@ -23,6 +23,10 @@ abstract class ChannelAdapter {
 
         // Use rule-specific template if provided, otherwise fall back to global
         $template = $target['template'] ?? $options['template'] ?? '';
+        if ( ! is_string( $template ) || trim( $template ) === '' ) {
+            // Saving global settings without a template must never send a blank notification.
+            $template = "📩 {form_name}\n\n{all_fields}";
+        }
         $message  = $this->renderTemplate( $template, $data );
         $payload  = $this->buildPayload( $message, $destination );
         $url      = $this->getApiEndpoint( $options['bot_token'] );
