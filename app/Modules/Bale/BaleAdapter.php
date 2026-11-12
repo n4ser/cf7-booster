@@ -26,7 +26,7 @@ class BaleAdapter extends ChannelAdapter {
      * Test the Bale bot token.
      */
     public function testConnection( string $botToken ): array {
-        $response = wp_remote_get(
+        $response = wp_safe_remote_get(
             "https://tapi.bale.ai/bot{$botToken}/getMe",
             [ 'timeout' => 10 ]
         );
