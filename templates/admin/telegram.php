@@ -51,13 +51,26 @@ $destinations = implode( "\n", (array) ( $options['destinations'] ?? [] ) );
                     </p>
                 </td>
             </tr>
+            <div class="cf7on-channel-template">
+                <label for="tg_template"><strong><?php esc_html_e( 'Default message template', 'cf7-booster' ); ?></strong></label>
+                <textarea class="large-text code" id="tg_template" rows="6"><?php echo esc_textarea( $options['template'] ?? '' ); ?></textarea>
+                <p class="description"><?php esc_html_e( 'Use placeholders such as {name}, {form_name}, {all_fields}. Form-specific templates override this default.', 'cf7-booster' ); ?></p>
+            </div>
         </table>
 
         <button type="button" class="button button-primary cf7on-save" data-action="cf7on_save_telegram"
-                data-fields="tg_enabled,tg_token,tg_destinations"
-                data-map='{"tg_enabled":"enabled","tg_token":"bot_token","tg_destinations":"destinations"}'>
+                data-fields="tg_enabled,tg_token,tg_destinations,tg_template"
+                data-map='{"tg_enabled":"enabled","tg_token":"bot_token","tg_destinations":"destinations","tg_template":"template"}'>
             <?php esc_html_e( 'Save Telegram Settings', 'cf7-booster' ); ?>
         </button>
+        <div class="cf7on-channel-test">
+            <button type="button" class="button button-secondary" data-cf7on-send-test="telegram" aria-controls="cf7on-send-test-telegram-result">
+                <span class="dashicons dashicons-controls-play" aria-hidden="true"></span>
+                <?php esc_html_e( 'Send test message', 'cf7-booster' ); ?>
+            </button>
+            <span id="cf7on-send-test-telegram-result" role="status" aria-live="polite" class="cf7on-channel-test-result"></span>
+        </div>
+        <p class="description"><?php esc_html_e( 'Sends a harmless sample to the first saved destination. Save the settings before testing.', 'cf7-booster' ); ?></p>
     </div>
 
     <!-- Forms quick-access -->
