@@ -41,21 +41,33 @@ final class MaintenanceService {
 
                 // IDs come from the database and are cast to integers before SQL.
                 $ids = implode( ',', array_map( 'absint', $ids ) );
-                $wpdb->query(
+                $deletedLogs = $wpdb->query(
                     "DELETE FROM {$logTable} WHERE delivery_id IN (SELECT id FROM {$deliveryTable} WHERE submission_id IN ({$ids}))"
                 );
-                $wpdb->query( "DELETE FROM {$deliveryTable} WHERE submission_id IN ({$ids})" );
-                $wpdb->query( "DELETE FROM {$table} WHERE id IN ({$ids})" );
+                if ( $deletedLogs === false ) {
+                    break;
+                }
+                if ( $wpdb->query( "DELETE FROM {$deliveryTable} WHERE submission_id IN ({$ids})" ) === false ) {
+                    break;
+                }
+                if ( $wpdb->query( "DELETE FROM {$table} WHERE id IN ({$ids})" ) === false ) {
+                    break;
+                }
             }
         }
 
         if ( $logs > 0 ) {
             $cutoff = wp_date( 'Y-m-d H:i:s', time() - $logs * DAY_IN_SECONDS );
             $logTable = $wpdb->prefix . 'cf7on_logs';
-            $wpdb->query( $wpdb->prepare(
-                "DELETE FROM {$logTable} WHERE created_at < %s LIMIT 1000",
-                $cutoff
-            ) );
+            for ( $batch = 0; $batch < 10; ++$batch ) {
+                $affected = $wpdb->query( $wpdb->prepare(
+                    "DELETE FROM {$logTable} WHERE created_at < %s LIMIT 500",
+                    $cutoff
+                ) );
+                if ( $affected === false || $affected < 500 ) {
+                    break;
+                }
+            }
         }
     }
 }
