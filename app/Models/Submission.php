@@ -95,6 +95,36 @@ class Submission {
         );
     }
 
+    /**
+     * Submission counts for the last N calendar dates in the WordPress timezone.
+     * Returns zero-filled days to keep charts readable on quiet websites.
+     */
+    public static function dailyCounts( int $days = 7 ): array {
+        global $wpdb;
+        $days = max( 1, min( 30, $days ) );
+        $counts = [];
+        for ( $i = $days - 1; $i >= 0; --$i ) {
+            $date = wp_date( 'Y-m-d', time() - $i * DAY_IN_SECONDS );
+            $counts[ $date ] = 0;
+        }
+
+        $first = array_key_first( $counts );
+        $table = $wpdb->prefix . 'cf7on_submissions';
+        $rows = $wpdb->get_results( $wpdb->prepare(
+            "SELECT DATE(created_at) AS date, COUNT(*) AS total
+             FROM {$table} WHERE created_at >= %s
+             GROUP BY DATE(created_at)",
+            $first . ' 00:00:00'
+        ), ARRAY_A );
+
+        foreach ( (array) $rows as $row ) {
+            if ( isset( $counts[ $row['date'] ] ) ) {
+                $counts[ $row['date'] ] = (int) $row['total'];
+            }
+        }
+        return $counts;
+    }
+
     public static function count( array $args = [] ): int {
         global $wpdb;
         $where  = '1=1';
