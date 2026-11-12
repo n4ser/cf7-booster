@@ -162,11 +162,12 @@ class DashboardModule {
 
     public function ajaxSaveTelegram(): void {
         $this->verifyNonce();
+        $existing = get_option( 'cf7on_telegram', [] );
         $data = [
             'enabled'      => ! empty( $_POST['enabled'] ),
             'bot_token'    => sanitize_text_field( $_POST['bot_token'] ?? '' ),
             'destinations' => array_map( 'sanitize_text_field', (array) ( $_POST['destinations'] ?? [] ) ),
-            'template'     => sanitize_textarea_field( $_POST['template'] ?? '' ),
+            'template'     => sanitize_textarea_field( wp_unslash( $_POST['template'] ?? ( $existing['template'] ?? '' ) ) ),
         ];
         update_option( 'cf7on_telegram', $data );
         wp_send_json_success( __( 'Telegram settings saved.', 'cf7-booster' ) );
@@ -174,11 +175,12 @@ class DashboardModule {
 
     public function ajaxSaveBale(): void {
         $this->verifyNonce();
+        $existing = get_option( 'cf7on_bale', [] );
         $data = [
             'enabled'      => ! empty( $_POST['enabled'] ),
             'bot_token'    => sanitize_text_field( $_POST['bot_token'] ?? '' ),
             'destinations' => array_map( 'sanitize_text_field', (array) ( $_POST['destinations'] ?? [] ) ),
-            'template'     => sanitize_textarea_field( $_POST['template'] ?? '' ),
+            'template'     => sanitize_textarea_field( wp_unslash( $_POST['template'] ?? ( $existing['template'] ?? '' ) ) ),
         ];
         update_option( 'cf7on_bale', $data );
         wp_send_json_success( __( 'Bale settings saved.', 'cf7-booster' ) );
