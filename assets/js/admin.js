@@ -239,9 +239,34 @@
     /*  renderRules                                                           */
     /* ===================================================================== */
 
+    function translateRuleMarkup() {
+        var strings = (typeof cf7on !== 'undefined' && cf7on.strings) || {};
+        var $root = $('#cf7on-rules-list');
+        // Translate text labels, select options, and placeholders, not user-entered values.
+        $root.find('*').addBack().contents().filter(function () {
+            return this.nodeType === 3;
+        }).each(function () {
+            var original = this.nodeValue;
+            var key = original.trim();
+            if (Object.prototype.hasOwnProperty.call(strings, key)) {
+                this.nodeValue = original.replace(key, strings[key]);
+            }
+        });
+        $root.find('[placeholder], [title]').each(function () {
+            var $el = $(this);
+            $.each(['placeholder', 'title'], function (_, attr) {
+                var value = $el.attr(attr);
+                if (value && strings[value]) {
+                    $el.attr(attr, strings[value]);
+                }
+            });
+        });
+    }
+
     function renderRules() {
         if (!cf7onRules.length) {
             $('#cf7on-rules-list').html('<div class="cf7on-card"><p class="cf7on-empty">No rules yet. Click "+ Add Rule" to get started.</p></div>');
+            translateRuleMarkup();
             return;
         }
         var html = '';
@@ -249,6 +274,7 @@
             html += renderRuleCard(i, rule);
         });
         $('#cf7on-rules-list').html(html);
+        translateRuleMarkup();
     }
 
     function renderRuleCard(i, rule) {
