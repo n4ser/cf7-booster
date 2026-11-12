@@ -46,3 +46,9 @@
 5. Test invalid credentials, API failures, Persian/English localization and RTL layout.
 
 Do not commit bot credentials or real customer information. Merge into `main` only after manual approval.
+
+## Staging 1.2.0-beta2 / نسخه آزمایشی
+
+شاخه staging دارای داشبورد بازطراحی‌شده، تنظیمات صف و حریم خصوصی، توقف ارسال اعلان‌ها، حذف اختیاری اطلاعات قدیمی، و پیام آزمایشی تلگرام/بله است. پاک‌سازی داده‌ها در حالت پیش‌فرض غیرفعال است. برای تست روی وردپرس از بسته ساخته‌شده توسط GitHub Actions استفاده کنید؛ جزئیات در TESTING.md آمده‌اند.
+
+The staging branch provides the redesigned dashboard, validated engine/privacy settings, global pause, opt-in retention, and a real sample-delivery test for Telegram and Bale. Retention is off by default. The GitHub Actions package job builds an installable plugin ZIP after tests pass.
