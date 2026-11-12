@@ -43,6 +43,10 @@ class QueueService {
     }
 
     public function processJob( int $submissionId ): void {
+        if ( EngineSettings::current()['notifications_paused'] ) {
+            $this->deferWhilePaused( 'cf7on_process_queue', [ $submissionId ] );
+            return;
+        }
         $data = Submission::find( $submissionId );
         if ( ! $data ) {
             return;
@@ -99,6 +103,10 @@ class QueueService {
     }
 
     public function retryDelivery( int $deliveryId, int $attempt = 1 ): void {
+        if ( EngineSettings::current()['notifications_paused'] ) {
+            $this->deferWhilePaused( 'cf7on_retry_delivery', [ $deliveryId, $attempt ] );
+            return;
+        }
         $delivery = Delivery::find( $deliveryId );
         if ( ! $delivery || $delivery['status'] === 'success' ) {
             return;
@@ -151,6 +159,9 @@ class QueueService {
      * Returns the number of retried delivery records.
      */
     public function resendFailed( int $submissionId ): int {
+        if ( EngineSettings::current()['notifications_paused'] ) {
+            return 0;
+        }
         $count = 0;
         foreach ( Delivery::forSubmission( $submissionId ) as $delivery ) {
             if ( $delivery['status'] !== 'failed' ) {
@@ -161,6 +172,12 @@ class QueueService {
             ++$count;
         }
         return $count;
+    }
+
+    private function deferWhilePaused( string $hook, array $args ): void {
+        if ( ! wp_next_scheduled( $hook, $args ) ) {
+            wp_schedule_single_event( time() + 300, $hook, $args );
+        }
     }
 
     private function resolveTargets( array $data ): array {
