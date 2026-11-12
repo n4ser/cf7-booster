@@ -59,7 +59,7 @@ class DashboardModule {
     /* ------------------------------------------------------------------ */
 
     public function enqueueAssets( string $hook ): void {
-        if ( strpos( $hook, 'cf7on' ) === false && ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'wpcf7' ) ) {
+        if ( strpos( $hook, 'cf7on' ) === false ) {
             return;
         }
         wp_enqueue_style(
