@@ -24,19 +24,31 @@ Global bot tokens are set once under CF7 Booster → Telegram / Bale.
 * Async queue with configurable retry
 * Submission storage with CSV export
 * Full delivery logs with sensitive data masking
-* No external dependencies
+* Requires an active installation of Contact Form 7; no separate PHP library dependencies
 
 == Installation ==
-1. Upload the plugin folder to /wp-content/plugins/
-2. Activate via Plugins menu
-3. Go to CF7 Booster → Telegram and enter your bot token
-4. Open any CF7 form, click the 🚀 CF7 Booster tab, enable & configure
+1. Install and activate Contact Form 7.
+2. Upload this plugin folder to /wp-content/plugins/ and activate it.
+3. Go to CF7 Booster → Telegram or Bale and enter a bot token and recipient destination.
+4. Open any CF7 form, click the 🚀 CF7 Booster tab, then enable and configure the channels.
+5. Submit a test form; check delivery logs and received messages before using the plugin in production.
 
 == Support ==
 https://inaser.ir/plugin/cf7-booster
 https://inaser.ir/contact
 
+== Staging Notes ==
+Version 1.2.0-beta1 is for testing on staging sites. Review TESTING.md for PHP/JavaScript checks, the queue smoke tests, and manual acceptance criteria. Do not deploy to production without review.
+
 == Changelog ==
+= 1.2.0-beta1 =
+* Improved retry tracking and avoidance of duplicate deliveries.
+* Improved per-form routing precedence and manual retries.
+* Fixed CF7 editor settings JavaScript and placeholder insertion.
+* Added Persian translations and RTL stylesheet.
+* Hardened HTTP requests and CSV export.
+* Added CI and smoke tests. Removed unused modules and bundled ZIP.
+
 = 1.1.0 =
 * Per-form settings tab integrated into CF7 form editor
 * Removed global template — templates now defined per-form
