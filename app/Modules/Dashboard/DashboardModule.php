@@ -216,60 +216,78 @@ class DashboardModule {
 
     public function ajaxSaveRules(): void {
         $this->verifyNonce();
-        $raw   = $_POST['rules'] ?? '[]';
-        $rules = json_decode( wp_unslash( $raw ), true );
+        $payload = $_POST['rules'] ?? '[]';
+        if ( ! is_string( $payload ) || strlen( $payload ) > 250000 ) {
+            wp_send_json_error( __( 'Invalid rules data.', 'cf7-booster' ) );
+        }
+        $rules = json_decode( wp_unslash( $payload ), true );
         if ( ! is_array( $rules ) ) {
-            wp_send_json_error( 'Invalid rules data.' );
+            wp_send_json_error( __( 'Invalid rules data.', 'cf7-booster' ) );
         }
 
-        $allowed_ops   = [ '=', '!=', '>', '<', '>=', '<=', 'contains', 'not_contains', 'starts', 'ends', 'regex', 'empty', 'not_empty' ];
-        $allowed_types = [ 'form_id', 'form_name', 'field_exact', 'field_name' ];
+        $allowedOps = [ '=', '!=', '>', '<', '>=', '<=', 'contains', 'not_contains', 'starts', 'ends', 'regex', 'empty', 'not_empty' ];
+        $allowedTypes = [ 'form_id', 'form_name', 'field_exact', 'field_name' ];
+        $cleanRules = [];
+        foreach ( array_slice( $rules, 0, 100 ) as $rule ) {
+            if ( ! is_array( $rule ) ) {
+                continue;
+            }
 
-        $clean = [];
-        foreach ( $rules as $rule ) {
             $conditions = [];
-            foreach ( (array) ( $rule['conditions'] ?? [] ) as $cond ) {
-                $type = sanitize_key( $cond['type'] ?? 'field_name' );
-                if ( ! in_array( $type, $allowed_types, true ) ) {
+            $inputConditions = $rule['conditions'] ?? ( isset( $rule['condition'] ) ? [ $rule['condition'] ] : [] );
+            if ( ! is_array( $inputConditions ) ) {
+                $inputConditions = [];
+            }
+            foreach ( array_slice( $inputConditions, 0, 20 ) as $condition ) {
+                if ( ! is_array( $condition ) ) {
+                    continue;
+                }
+                $type = sanitize_key( $condition['type'] ?? 'field_name' );
+                if ( ! in_array( $type, $allowedTypes, true ) ) {
                     $type = 'field_name';
                 }
-                $op = sanitize_text_field( $cond['operator'] ?? 'contains' );
-                if ( ! in_array( $op, $allowed_ops, true ) ) {
-                    $op = 'contains';
-                }
-                $name_op = sanitize_text_field( $cond['name_operator'] ?? 'contains' );
-                if ( ! in_array( $name_op, $allowed_ops, true ) ) {
-                    $name_op = 'contains';
-                }
-
+                $operator = sanitize_text_field( $condition['operator'] ?? 'contains' );
+                $nameOperator = sanitize_text_field( $condition['name_operator'] ?? 'contains' );
                 $conditions[] = [
                     'type'          => $type,
-                    // field_exact
-                    'field'         => sanitize_text_field( $cond['field'] ?? '' ),
-                    // field_name
-                    'name_operator' => $name_op,
-                    'name_value'    => sanitize_text_field( $cond['name_value'] ?? '' ),
-                    // shared
-                    'operator'      => $op,
-                    'value'         => sanitize_text_field( $cond['value'] ?? '' ),
+                    'field'         => sanitize_text_field( $condition['field'] ?? '' ),
+                    'name_operator' => in_array( $nameOperator, $allowedOps, true ) ? $nameOperator : 'contains',
+                    'name_value'    => sanitize_text_field( $condition['name_value'] ?? '' ),
+                    'operator'      => in_array( $operator, $allowedOps, true ) ? $operator : 'contains',
+                    'value'         => sanitize_text_field( $condition['value'] ?? '' ),
                 ];
             }
 
-            $clean[] = [
+            $actions = [];
+            $inputActions = $rule['actions'] ?? [];
+            if ( ! is_array( $inputActions ) ) {
+                $inputActions = [];
+            }
+            foreach ( array_slice( $inputActions, 0, 20 ) as $action ) {
+                if ( ! is_array( $action ) ) {
+                    continue;
+                }
+                $channel = sanitize_key( $action['channel'] ?? '' );
+                if ( ! in_array( $channel, [ 'telegram', 'bale' ], true ) ) {
+                    continue;
+                }
+                $actions[] = [
+                    'channel'     => $channel,
+                    'destination' => sanitize_text_field( $action['destination'] ?? '' ),
+                    'template'    => sanitize_textarea_field( $action['template'] ?? '' ),
+                ];
+            }
+            $logic = strtoupper( sanitize_text_field( $rule['logic'] ?? 'AND' ) );
+            $cleanRules[] = [
                 'name'       => sanitize_text_field( $rule['name'] ?? '' ),
                 'enabled'    => ! empty( $rule['enabled'] ),
-                'logic'      => in_array( strtoupper( $rule['logic'] ?? 'AND' ), [ 'AND', 'OR' ], true )
-                                    ? strtoupper( $rule['logic'] ) : 'AND',
+                'logic'      => in_array( $logic, [ 'AND', 'OR' ], true ) ? $logic : 'AND',
                 'conditions' => $conditions,
-                'actions'    => array_map( fn( $a ) => [
-                    'channel'     => sanitize_key( $a['channel'] ?? '' ),
-                    'destination' => sanitize_text_field( $a['destination'] ?? '' ),
-                    'template'    => sanitize_textarea_field( $a['template'] ?? '' ),
-                ], (array) ( $rule['actions'] ?? [] ) ),
+                'actions'    => $actions,
             ];
         }
 
-        update_option( 'cf7on_automation_rules', $clean );
+        update_option( 'cf7on_automation_rules', $cleanRules );
         wp_send_json_success( __( 'Rules saved.', 'cf7-booster' ) );
     }
 
