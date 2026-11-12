@@ -68,6 +68,12 @@ class DashboardModule {
             [],
             CF7ON_VERSION
         );
+        wp_enqueue_style(
+            'cf7on-console',
+            CF7ON_URL . 'assets/css/console.css',
+            [ 'cf7on-admin' ],
+            CF7ON_VERSION
+        );
         if ( is_rtl() ) {
             wp_enqueue_style(
                 'cf7on-admin-rtl',
