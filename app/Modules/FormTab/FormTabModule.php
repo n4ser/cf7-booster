@@ -150,8 +150,8 @@ class FormTabModule {
         }
 
         $form_id = absint( $_POST['form_id'] ?? 0 );
-        if ( ! $form_id ) {
-            wp_send_json_error( 'Invalid form ID.' );
+        if ( ! $form_id || ! \WPCF7_ContactForm::get_instance( $form_id ) ) {
+            wp_send_json_error( __( 'Invalid form ID.', 'cf7-booster' ) );
         }
 
         $this->persistFormSettings( $form_id );
