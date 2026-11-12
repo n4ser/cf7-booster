@@ -27,6 +27,7 @@ class Plugin {
     private function registerServices(): void {
         $this->services = [
             'queue'      => new \CF7ON\Services\QueueService(),
+            'maintenance'=> new \CF7ON\Services\MaintenanceService(),
             'cf7'        => new \CF7ON\Modules\CF7\CF7Integration(),
             'telegram'   => new \CF7ON\Modules\Telegram\TelegramAdapter(),
             'bale'       => new \CF7ON\Modules\Bale\BaleAdapter(),
