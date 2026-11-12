@@ -38,9 +38,15 @@ https://inaser.ir/plugin/cf7-booster
 https://inaser.ir/contact
 
 == Staging Notes ==
-Version 1.2.0-beta1 is for testing on staging sites. Review TESTING.md for PHP/JavaScript checks, the queue smoke tests, and manual acceptance criteria. Do not deploy to production without review.
+Version 1.2.0-beta2 is for testing on staging sites. Review TESTING.md for PHP/JavaScript checks, the queue smoke tests, and manual acceptance criteria. Do not deploy to production without review.
 
 == Changelog ==
+= 1.2.0-beta2 =
+* Redesigned bilingual operations dashboard with responsive activity chart and channel status.
+* Reorganized validated settings, adding pause controls, retention days and privacy switches.
+* Added real Telegram/Bale test-message actions and editable global templates.
+* Added automation and form configuration checks, retention tests, and a CI-built staging ZIP.
+
 = 1.2.0-beta1 =
 * Improved retry tracking and avoidance of duplicate deliveries.
 * Improved per-form routing precedence and manual retries.
