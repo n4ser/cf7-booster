@@ -19,7 +19,6 @@ class DashboardModule {
         add_action( 'wp_ajax_cf7on_test_telegram',  [ $this, 'ajaxTestTelegram' ] );
         add_action( 'wp_ajax_cf7on_test_bale',      [ $this, 'ajaxTestBale' ] );
         add_action( 'wp_ajax_cf7on_resend',         [ $this, 'ajaxResend' ] );
-        add_action( 'wp_ajax_cf7on_save_form_settings', [ $this, 'proxyFormTabSave' ] );
         add_action( 'wp_ajax_cf7on_export_csv',     [ $this, 'ajaxExportCsv' ] );
     }
 
@@ -259,8 +258,11 @@ class DashboardModule {
             wp_send_json_error( 'Invalid submission ID.' );
         }
         $queue = \CF7ON\Core\Plugin::getInstance()->get( 'queue' );
-        $queue->processJob( $id );
-        wp_send_json_success( __( 'Notification re-sent.', 'cf7-booster' ) );
+        $count = $queue->resendFailed( $id );
+        if ( ! $count ) {
+            wp_send_json_error( __( 'No failed notifications are available for retry.', 'cf7-booster' ) );
+        }
+        wp_send_json_success( __( 'Failed notifications retried.', 'cf7-booster' ) );
     }
 
     public function ajaxExportCsv(): void {
@@ -275,16 +277,24 @@ class DashboardModule {
         header( 'Content-Disposition: attachment; filename=cf7-submissions-' . date( 'Y-m-d' ) . '.csv' );
 
         $out = fopen( 'php://output', 'w' );
+        if ( ! $out ) {
+            wp_die( esc_html__( 'Unable to generate CSV.', 'cf7-booster' ) );
+        }
+        // Prevent spreadsheet formula injection from user-controlled form fields.
+        $csvSafe = static function ( $value ): string {
+            $value = (string) $value;
+            return preg_match( '/^\\s*[=+\\-@]/u', $value ) ? "'" . $value : $value;
+        };
         fputcsv( $out, [ 'ID', 'Form', 'Status', 'IP', 'Date', 'Fields' ] );
         foreach ( $submissions as $s ) {
-            fputcsv( $out, [
+            fputcsv( $out, array_map( $csvSafe, [
                 $s['id'],
                 $s['form_name'],
                 $s['status'],
                 $s['ip_address'],
                 $s['created_at'],
                 wp_json_encode( $s['fields'] ),
-            ] );
+            ] ) );
         }
         fclose( $out );
         exit;
@@ -300,19 +310,6 @@ class DashboardModule {
         }
         if ( ! current_user_can( 'manage_options' ) ) {
             wp_send_json_error( 'Unauthorized.' );
-        }
-    }
-
-    /**
-     * Proxy so the FormTabModule AJAX handler is also reachable via DashboardModule's
-     * registered action (both point to the same underlying logic).
-     */
-    public function proxyFormTabSave(): void {
-        $module = \CF7ON\Core\Plugin::getInstance()->get( 'form_tab' );
-        if ( $module ) {
-            $module->ajaxSaveFormSettings();
-        } else {
-            wp_send_json_error( 'FormTabModule not loaded.' );
         }
     }
 
