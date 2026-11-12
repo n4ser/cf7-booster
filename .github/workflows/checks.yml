@@ -32,3 +32,27 @@ jobs:
         run: php tests/channel-smoke.php
       - name: Settings and retention smoke tests
         run: php tests/settings-smoke.php
+      - name: Form settings and automation smoke tests
+        run: php tests/form-smoke.php
+
+  package:
+    name: Build installable staging ZIP
+    needs: syntax
+    if: github.ref == 'refs/heads/staging'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble WordPress plugin (without tests or git metadata)
+        run: |
+          mkdir -p dist/cf7-booster
+          cp -R app assets languages templates dist/cf7-booster/
+          cp cf7-booster.php cf7-booster.pot readme.txt dist/cf7-booster/
+          cd dist
+          zip -q -r cf7-booster-staging.zip cf7-booster
+      - name: Upload testable WordPress plugin
+        uses: actions/upload-artifact@v4
+        with:
+          name: formrelay-cf7-staging
+          path: dist/cf7-booster-staging.zip
+          if-no-files-found: error
+          retention-days: 14
