@@ -28,3 +28,5 @@ jobs:
         run: node --check assets/js/admin.js
       - name: Queue behavior smoke tests
         run: php tests/queue-smoke.php
+      - name: Messaging adapter smoke tests
+        run: php tests/channel-smoke.php
