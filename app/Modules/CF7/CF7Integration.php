@@ -18,9 +18,6 @@ class CF7Integration {
         // Primary hook: fires after email is sent
         add_action( 'wpcf7_mail_sent', [ $this, 'onMailSent' ] );
 
-        // Alternative: fires before email, lets us handle failures too
-        add_action( 'wpcf7_before_send_mail', [ $this, 'onBeforeSendMail' ] );
-
         // Also catch failed submissions for logging
         add_action( 'wpcf7_mail_failed', [ $this, 'onMailFailed' ] );
     }
@@ -41,13 +38,6 @@ class CF7Integration {
         if ( $id ) {
             $this->queue->dispatch( $id, $data );
         }
-    }
-
-    /**
-     * Alternative hook — intercept before email (useful for conditional logic).
-     */
-    public function onBeforeSendMail( \WPCF7_ContactForm $cf7 ): void {
-        // Reserved for pre-send automation hooks (e.g. spam filtering in Phase 3)
     }
 
     /**
