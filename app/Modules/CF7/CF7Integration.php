@@ -71,12 +71,14 @@ class CF7Integration {
             ARRAY_FILTER_USE_KEY
         );
 
+        $privacy = \CF7ON\Services\EngineSettings::current();
+
         return [
             'form_id'    => $cf7->id(),
             'form_name'  => $cf7->title(),
             'fields'     => $fields,
-            'ip_address' => $submission->get_meta( 'remote_ip' ),
-            'user_agent' => $submission->get_meta( 'user_agent' ),
+            'ip_address' => $privacy['store_ip_address'] ? $submission->get_meta( 'remote_ip' ) : '',
+            'user_agent' => $privacy['store_user_agent'] ? $submission->get_meta( 'user_agent' ) : '',
             'referrer'   => $submission->get_meta( 'url' ),
             'status'     => 'pending',
         ];
