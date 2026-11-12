@@ -25,7 +25,7 @@ final class EngineSettings {
 
     public static function current(): array {
         $stored = get_option( 'cf7on_engine', [] );
-        return array_merge( self::defaults(), is_array( $stored ) ? $stored : [] );
+        return self::sanitize( array_merge( self::defaults(), is_array( $stored ) ? $stored : [] ) );
     }
 
     /**
