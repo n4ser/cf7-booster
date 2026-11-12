@@ -34,10 +34,22 @@
     /*  PLACEHOLDER CHIPS — click to insert into closest textarea            */
     /* ===================================================================== */
 
+    var lastTemplate = null;
+    $(document).on('focusin', '.cf7on-tpl-textarea', function () {
+        lastTemplate = this;
+    });
+
     $(document).on('click', '.cf7on-chip', function () {
         var ph = $(this).data('ph');
-        // Look for the labelled textarea first, then any textarea in the card
-        var $ta = $(this).closest('.cf7on-card').find('textarea').first();
+        // The placeholder legend sits outside the channel cards.
+        // Insert into the last focused message template or the first template.
+        var $ta = $(this).closest('.cf7on-card').find('.cf7on-tpl-textarea').first();
+        if (!$ta.length && lastTemplate && $.contains(document, lastTemplate)) {
+            $ta = $(lastTemplate);
+        }
+        if (!$ta.length) {
+            $ta = $('.cf7on-tpl-textarea').first();
+        }
         if (!$ta.length) return;
         var el = $ta[0], s = el.selectionStart, e = el.selectionEnd;
         el.value = el.value.substring(0, s) + ph + el.value.substring(e);
