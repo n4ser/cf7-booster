@@ -13,6 +13,7 @@ class Installer {
     public static function deactivate(): void {
         wp_clear_scheduled_hook( 'cf7on_process_queue' );
         wp_clear_scheduled_hook( 'cf7on_retry_delivery' );
+        wp_clear_scheduled_hook( 'cf7on_daily_maintenance' );
         flush_rewrite_rules();
     }
 
@@ -88,13 +89,7 @@ class Installer {
                 'template'    => "📩 New Contact Request\n\nName: {name}\nPhone: {phone}\nEmail: {email}\n\nMessage:\n{message}\n\nForm: {form_name}\nTime: {submission_date}",
                 'enabled'     => false,
             ],
-            'cf7on_engine' => [
-                'queue_mode'       => 'async',
-                'max_retries'      => 3,
-                'retry_interval'   => 90,
-                'logging_enabled'  => true,
-                'mask_sensitive'   => true,
-            ],
+            'cf7on_engine' => \CF7ON\Services\EngineSettings::defaults(),
             'cf7on_automation_rules' => [],
         ];
 
