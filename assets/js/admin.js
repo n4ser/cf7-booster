@@ -8,7 +8,7 @@
 
     function showNotice(msg, type) {
         var cls = (type === 'error') ? 'notice-error' : 'notice-success';
-        $('#cf7on-notice').html('<div class="notice ' + cls + ' is-dismissible"><p>' + msg + '</p></div>');
+        $('#cf7on-notice').empty().append($('<div>').addClass('notice ' + cls + ' is-dismissible').append($('<p>').text(msg)));
         setTimeout(function () { $('#cf7on-notice .notice').fadeOut(400); }, 4000);
     }
 
@@ -485,6 +485,8 @@
 /* ===================================================================== */
 /*  CF7 FORM TAB — Save button (AJAX, stays on CF7 editor page)         */
 /* ===================================================================== */
+(function ($) {
+'use strict';
 $(document).on('click', '#cf7on-save-form-tab', function () {
     var $btn    = $(this);
     var formId  = $btn.data('form-id');
@@ -511,22 +513,15 @@ $(document).on('click', '#cf7on-save-form-tab', function () {
     $.post(cf7on.ajaxurl, post, function (r) {
         $btn.prop('disabled', false).text(orig);
         if (r.success) {
-            $result.html('<span style="color:#28a745">✓ ' + r.data + '</span>');
+            $result.empty().append($('<span>').css('color','#28a745').text('✓ ' + r.data));
         } else {
-            $result.html('<span style="color:#dc3545">✗ ' + (r.data || 'Error') + '</span>');
+            $result.empty().append($('<span>').css('color','#dc3545').text('✗ ' + (r.data || 'Error')));
         }
         setTimeout(function(){ $result.text(''); }, 4000);
     }).fail(function () {
         $btn.prop('disabled', false).text(orig);
-        $result.html('<span style="color:#dc3545">✗ Request failed</span>');
+        $result.empty().append($('<span>').css('color','#dc3545').text('✗ Request failed'));
     });
 });
 
-/* ===================================================================== */
-/*  CF7 FORM TAB — Chip insertion targets nearest cf7on-tpl-textarea     */
-/* ===================================================================== */
-$(document).on('click', '.cf7on-chip', function (e) {
-    // Override generic handler for form-tab context:
-    // find the closest .cf7on-tpl-textarea that is visible/focused
-    // The generic handler already works; this is a no-op here.
-});
+})(jQuery);
