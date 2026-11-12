@@ -6,6 +6,7 @@ defined( 'ABSPATH' ) || exit;
 use CF7ON\Models\Submission;
 use CF7ON\Models\Delivery;
 use CF7ON\Services\LogService;
+use CF7ON\Services\EngineSettings;
 
 class DashboardModule {
 
@@ -18,6 +19,7 @@ class DashboardModule {
         add_action( 'wp_ajax_cf7on_save_rules',     [ $this, 'ajaxSaveRules' ] );
         add_action( 'wp_ajax_cf7on_test_telegram',  [ $this, 'ajaxTestTelegram' ] );
         add_action( 'wp_ajax_cf7on_test_bale',      [ $this, 'ajaxTestBale' ] );
+        add_action( 'wp_ajax_cf7on_send_test',      [ $this, 'ajaxSendTest' ] );
         add_action( 'wp_ajax_cf7on_resend',         [ $this, 'ajaxResend' ] );
         add_action( 'wp_ajax_cf7on_export_csv',     [ $this, 'ajaxExportCsv' ] );
     }
@@ -95,9 +97,20 @@ class DashboardModule {
     public function pageDashboard(): void {
         $total   = Submission::count();
         $today   = Submission::count( [ 'date_from' => current_time( 'Y-m-d' ) . ' 00:00:00' ] );
-        $week    = Submission::count( [ 'date_from' => date( 'Y-m-d', strtotime( '-7 days' ) ) . ' 00:00:00' ] );
+        $week    = Submission::count( [ 'date_from' => wp_date( 'Y-m-d', time() - 6 * DAY_IN_SECONDS ) . ' 00:00:00' ] );
         $failed  = Submission::count( [ 'status' => 'failed' ] );
-        $recent  = Submission::findAll( [ 'limit' => 10 ] );
+        $pending = Submission::count( [ 'status' => 'pending' ] );
+        $partial = Submission::count( [ 'status' => 'partial' ] );
+        $delivered = Submission::count( [ 'status' => 'delivered' ] );
+        $recent  = Submission::findAll( [ 'limit' => 7 ] );
+        $trend = Submission::dailyCounts( 7 );
+        $chartMax = max( 1, ...array_values( $trend ) );
+        $engine = EngineSettings::current();
+        $telegram = get_option( 'cf7on_telegram', [] );
+        $bale = get_option( 'cf7on_bale', [] );
+        $telegramReady = ! empty( $telegram['bot_token'] ) && ! empty( $telegram['destinations'] );
+        $baleReady = ! empty( $bale['bot_token'] ) && ! empty( $bale['destinations'] );
+        $cronDisabled = defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON;
         require CF7ON_PATH . 'templates/admin/dashboard.php';
     }
 
@@ -140,7 +153,9 @@ class DashboardModule {
     }
 
     public function pageSettings(): void {
-        $options = get_option( 'cf7on_engine', [] );
+        $options = EngineSettings::current();
+        $cronDisabled = defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON;
+        $nextCleanup = wp_next_scheduled( 'cf7on_daily_maintenance' );
         require CF7ON_PATH . 'templates/admin/settings.php';
     }
 
@@ -150,40 +165,46 @@ class DashboardModule {
 
     public function ajaxSaveTelegram(): void {
         $this->verifyNonce();
-        $existing = get_option( 'cf7on_telegram', [] );
-        $data = [
-            'enabled'      => ! empty( $_POST['enabled'] ),
-            'bot_token'    => sanitize_text_field( $_POST['bot_token'] ?? '' ),
-            'destinations' => array_map( 'sanitize_text_field', (array) ( $_POST['destinations'] ?? [] ) ),
-            'template'     => sanitize_textarea_field( wp_unslash( $_POST['template'] ?? ( $existing['template'] ?? '' ) ) ),
-        ];
-        update_option( 'cf7on_telegram', $data );
+        $this->saveChannel( 'telegram' );
         wp_send_json_success( __( 'Telegram settings saved.', 'cf7-booster' ) );
     }
 
     public function ajaxSaveBale(): void {
         $this->verifyNonce();
-        $existing = get_option( 'cf7on_bale', [] );
-        $data = [
-            'enabled'      => ! empty( $_POST['enabled'] ),
-            'bot_token'    => sanitize_text_field( $_POST['bot_token'] ?? '' ),
-            'destinations' => array_map( 'sanitize_text_field', (array) ( $_POST['destinations'] ?? [] ) ),
-            'template'     => sanitize_textarea_field( wp_unslash( $_POST['template'] ?? ( $existing['template'] ?? '' ) ) ),
-        ];
-        update_option( 'cf7on_bale', $data );
+        $this->saveChannel( 'bale' );
         wp_send_json_success( __( 'Bale settings saved.', 'cf7-booster' ) );
+    }
+
+    private function saveChannel( string $channel ): void {
+        $existing = get_option( 'cf7on_' . $channel, [] );
+        $existing = is_array( $existing ) ? $existing : [];
+        $input = wp_unslash( $_POST );
+        $destinations = $input['destinations'] ?? [];
+        $destinations = is_array( $destinations ) ? $destinations : [];
+        $cleanDestinations = [];
+        foreach ( array_slice( $destinations, 0, 50 ) as $destination ) {
+            if ( ! is_scalar( $destination ) ) {
+                continue;
+            }
+            $value = sanitize_text_field( (string) $destination );
+            if ( $value !== '' ) {
+                $cleanDestinations[] = $value;
+            }
+        }
+        $token = $input['bot_token'] ?? '';
+        $template = $input['template'] ?? ( $existing['template'] ?? '' );
+        update_option( 'cf7on_' . $channel, [
+            'enabled'      => ! empty( $input['enabled'] ),
+            'bot_token'    => is_scalar( $token ) ? sanitize_text_field( (string) $token ) : '',
+            'destinations' => array_values( array_unique( $cleanDestinations ) ),
+            'template'     => is_string( $template ) ? sanitize_textarea_field( $template ) : '',
+        ] );
     }
 
     public function ajaxSaveSettings(): void {
         $this->verifyNonce();
-        $data = [
-            'queue_mode'      => sanitize_key( $_POST['queue_mode'] ?? 'async' ),
-            'max_retries'     => absint( $_POST['max_retries'] ?? 3 ),
-            'retry_interval'  => absint( $_POST['retry_interval'] ?? 90 ),
-            'logging_enabled' => ! empty( $_POST['logging_enabled'] ),
-            'mask_sensitive'  => ! empty( $_POST['mask_sensitive'] ),
-        ];
-        update_option( 'cf7on_engine', $data );
+        $input = wp_unslash( $_POST );
+        update_option( 'cf7on_engine', EngineSettings::sanitize( $input ) );
         wp_send_json_success( __( 'Settings saved.', 'cf7-booster' ) );
     }
 
@@ -262,8 +283,52 @@ class DashboardModule {
         $result['success'] ? wp_send_json_success( $result ) : wp_send_json_error( $result['error'] );
     }
 
+    public function ajaxSendTest(): void {
+        $this->verifyNonce();
+        $channel = sanitize_key( $_POST['channel'] ?? '' );
+        if ( ! in_array( $channel, [ 'telegram', 'bale' ], true ) ) {
+            wp_send_json_error( __( 'Invalid channel.', 'cf7-booster' ) );
+        }
+
+        $settings = get_option( 'cf7on_' . $channel, [] );
+        $destinations = (array) ( $settings['destinations'] ?? [] );
+        $destination = isset( $destinations[0] ) && is_scalar( $destinations[0] )
+            ? (string) $destinations[0] : '';
+
+        if ( empty( $settings['bot_token'] ) || $destination === '' ) {
+            wp_send_json_error( __( 'Save a bot token and destination first.', 'cf7-booster' ) );
+        }
+
+        if ( EngineSettings::current()['notifications_paused'] ) {
+            wp_send_json_error( __( 'Notifications are paused in Settings.', 'cf7-booster' ) );
+        }
+
+        $adapter = \CF7ON\Core\Plugin::getInstance()->get( $channel );
+        if ( ! $adapter ) {
+            wp_send_json_error( __( 'Messaging adapter unavailable.', 'cf7-booster' ) );
+        }
+
+        // Send a harmless sample message; never use real submission information.
+        $data = [
+            'form_id' => 0,
+            'form_name' => __( 'Test form', 'cf7-booster' ),
+            'fields' => [],
+        ];
+        $result = $adapter->send( $data, [
+            'destination' => $destination,
+            'template' => __( '✅ Test notification from FormRelay CF7. Your messaging channel is working.', 'cf7-booster' ),
+        ] );
+        if ( ! empty( $result['success'] ) ) {
+            wp_send_json_success( __( 'Test message sent to the first saved destination.', 'cf7-booster' ) );
+        }
+        wp_send_json_error( __( 'Test failed. Check your token, destination, and logs.', 'cf7-booster' ) );
+    }
+
     public function ajaxResend(): void {
         $this->verifyNonce();
+        if ( EngineSettings::current()['notifications_paused'] ) {
+            wp_send_json_error( __( 'Notifications are paused in Settings.', 'cf7-booster' ) );
+        }
         $id = absint( $_POST['submission_id'] ?? 0 );
         if ( ! $id ) {
             wp_send_json_error( 'Invalid submission ID.' );
