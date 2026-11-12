@@ -1,11 +1,14 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: CF7 Booster 1.2.0-beta1\n"
+"Project-Id-Version: CF7 Booster 1.2.0-beta2\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "— select form —"
+msgstr "— انتخاب فرم —"
 
 msgid "!~ not contains"
 msgstr "!~ شامل نیست"
@@ -19,14 +22,14 @@ msgstr "(هر شناسه چت یا @کانال در یک خط؛ جایگزین �
 msgid "(one Chat ID or @channel per line)"
 msgstr "(در هر خط یک شناسه چت یا @کانال)"
 
-msgid "+ Add Rule"
-msgstr "+ افزودن قانون"
-
 msgid "+ Add channel / destination"
 msgstr "+ افزودن کانال یا مقصد"
 
 msgid "+ Add condition"
 msgstr "+ افزودن شرط"
+
+msgid "+ Add Rule"
+msgstr "+ افزودن قانون"
 
 msgid "< less than"
 msgstr "< کوچک‌تر از"
@@ -34,14 +37,65 @@ msgstr "< کوچک‌تر از"
 msgid "= equals"
 msgstr "= برابر است با"
 
+msgid "≠ not equals"
+msgstr "≠ برابر نیست با"
+
 msgid "> greater than"
 msgstr "> بزرگ‌تر از"
 
-msgid "ALL conditions (AND)"
-msgstr "همه شرط‌ها (AND)"
+msgid "~ contains"
+msgstr "~ شامل"
 
-msgid "ANY condition (OR)"
-msgstr "حداقل یکی از شرط‌ها (OR)"
+msgid "≤ ≤"
+msgstr "≤ کوچک‌تر یا مساوی"
+
+msgid "≥ ≥"
+msgstr "≥ بزرگ‌تر یا مساوی"
+
+msgid "⊛ regex"
+msgstr "⊛ عبارت منظم"
+
+msgid "▲ Custom template"
+msgstr "▲ قالب اختصاصی"
+
+msgid "▼ Custom template"
+msgstr "▼ قالب اختصاصی"
+
+msgid "⚠ Bot token not set globally"
+msgstr "⚠ توکن ربات در تنظیمات سراسری وارد نشده است"
+
+msgid "✅ Test notification from FormRelay CF7. Your messaging channel is working."
+msgstr "✅ این یک اعلان آزمایشی از فرم‌رسان است. کانال ارسال پیام شما فعال است."
+
+msgid "✕ Delete"
+msgstr "✕ حذف"
+
+msgid "🏷 Form title"
+msgstr "🏷 عنوان فرم"
+
+msgid "💬 Bale"
+msgstr "💬 بله"
+
+msgid "📄 Form (select from list)"
+msgstr "📄 فرم (انتخاب از فهرست)"
+
+msgid "📋 Field name pattern + value"
+msgstr "📋 الگوی نام فیلد و مقدار"
+
+msgid "📨 Telegram"
+msgstr "📨 تلگرام"
+
+msgid "🔤 Exact field name + value"
+msgstr "🔤 نام دقیق فیلد و مقدار"
+
+msgid "0 = keep indefinitely. A non-zero value permanently deletes old submissions and related deliveries/log entries in scheduled batches."
+msgstr "صفر = بدون حذف خودکار. مقدار غیرصفر فرم‌های قدیمی و رکوردهای تحویل و گزارش مرتبط را در دسته‌های زمان‌بندی‌شده برای همیشه حذف می‌کند."
+
+msgid "0 = keep logs indefinitely. Deletion cannot be undone; back up data first."
+msgstr "صفر = نگهداری همیشگی گزارش‌ها. حذف قابل بازگشت نیست؛ ابتدا نسخه پشتیبان تهیه کنید."
+
+msgid "0 disables automatic retries. A failed message can still be retried manually."
+msgstr "صفر، تلاش خودکار را غیرفعال می‌کند. ارسال ناموفق همچنان به‌صورت دستی قابل تکرار است."
 
 msgid "Action"
 msgstr "عمل"
@@ -49,11 +103,23 @@ msgstr "عمل"
 msgid "Actions"
 msgstr "عملیات"
 
+msgid "Activity"
+msgstr "فعالیت"
+
 msgid "Add Rule"
 msgstr "افزودن قانون"
 
 msgid "All Channels"
 msgstr "همه کانال‌ها"
+
+msgid "ALL conditions (AND)"
+msgstr "همه شرط‌ها (AND)"
+
+msgid "All destinations succeeded"
+msgstr "همه مقصدها موفق"
+
+msgid "All fields"
+msgstr "همه فیلدها"
 
 msgid "All Forms"
 msgstr "همه فرم‌ها"
@@ -64,14 +130,17 @@ msgstr "همه سطوح"
 msgid "All Statuses"
 msgstr "همه وضعیت‌ها"
 
-msgid "All fields"
-msgstr "همه فیلدها"
+msgid "All time"
+msgstr "از ابتدا"
 
-msgid "Asynchronous (recommended):"
-msgstr "غیرهم‌زمان (پیشنهادی):"
+msgid "ANY condition (OR)"
+msgstr "حداقل یکی از شرط‌ها (OR)"
 
 msgid "Asynchronous — background (recommended)"
 msgstr "غیرهم‌زمان — پس‌زمینه (پیشنهادی)"
+
+msgid "Asynchronous (recommended):"
+msgstr "غیرهم‌زمان (پیشنهادی):"
 
 msgid "Automation"
 msgstr "خودکارسازی"
@@ -82,14 +151,35 @@ msgstr "قوانین خودکارسازی"
 msgid "Available Placeholders"
 msgstr "متغیرهای قابل استفاده"
 
+msgid "Back to dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Background"
+msgstr "پس‌زمینه"
+
+msgid "Background — WP-Cron (recommended)"
+msgstr "پس‌زمینه — با WP-Cron (پیشنهادی)"
+
+msgid "Background mode avoids making visitors wait for Telegram or Bale. It needs a working WordPress or server cron."
+msgstr "حالت پس‌زمینه باعث می‌شود کاربر منتظر تلگرام یا بله نماند. به کرون فعال وردپرس یا سرور نیاز دارد."
+
+msgid "Background notifications need a configured server cron job."
+msgstr "اعلان‌های پس‌زمینه به کرون سرور پیکربندی‌شده نیاز دارند."
+
 msgid "Bale"
 msgstr "بله"
+
+msgid "Bale — Global Settings"
+msgstr "بله — تنظیمات سراسری"
+
+msgid "Bale bot token"
+msgstr "توکن ربات بله"
 
 msgid "Bale settings saved."
 msgstr "تنظیمات بله ذخیره شد."
 
-msgid "Bale — Global Settings"
-msgstr "بله — تنظیمات سراسری"
+msgid "Between 10 seconds and 24 hours. Existing scheduled attempts keep their original times."
+msgstr "بین ۱۰ ثانیه تا ۲۴ ساعت. زمان تلاش‌هایی که از قبل زمان‌بندی شده‌اند تغییر نمی‌کند."
 
 msgid "Bot Configuration"
 msgstr "پیکربندی ربات"
@@ -100,11 +190,23 @@ msgstr "توکن ربات"
 msgid "Bot: configured globally"
 msgstr "ربات: در تنظیمات سراسری تنظیم شده"
 
+msgid "Browser cron disabled"
+msgstr "کرون وابسته به بازدید غیرفعال"
+
+msgid "Browser cron enabled"
+msgstr "کرون وابسته به بازدید فعال"
+
+msgid "Browser information"
+msgstr "اطلاعات مرورگر"
+
 msgid "CF7 Booster"
 msgstr "فرم‌رسان"
 
 msgid "CF7 Booster — Settings"
 msgstr "فرم‌رسان — تنظیمات"
+
+msgid "Changes take effect after saving. Retention cleanup is irreversible."
+msgstr "تغییرات پس از ذخیره اعمال می‌شوند. پاک‌سازی داده‌ها قابل بازگشت نیست."
 
 msgid "Channel"
 msgstr "کانال"
@@ -112,8 +214,23 @@ msgstr "کانال"
 msgid "Chat ID or @channel"
 msgstr "شناسه چت یا @کانال"
 
+msgid "Choose which metadata to store and optionally delete old records automatically."
+msgstr "اطلاعات جانبی قابل ذخیره را انتخاب کنید و در صورت تمایل داده‌های قدیمی را خودکار حذف کنید."
+
+msgid "Click a form to configure its Telegram message template and destinations."
+msgstr "برای تنظیم قالب پیام و مقصدهای تلگرام هر فرم، آن را انتخاب کنید."
+
+msgid "Configuration status does not guarantee message delivery. Use Send test message to verify the channel."
+msgstr "تنظیمات به‌تنهایی تحویل پیام را تضمین نمی‌کند. از «ارسال پیام آزمایشی» برای بررسی کانال استفاده کنید."
+
 msgid "Configure"
 msgstr "پیکربندی"
+
+msgid "Configure delivery behavior, safety, privacy and data retention."
+msgstr "روش ارسال، امنیت، حریم خصوصی و نگهداری داده‌ها را تنظیم کنید."
+
+msgid "Configured"
+msgstr "تنظیم‌شده"
 
 msgid "Connected"
 msgstr "متصل"
@@ -121,8 +238,20 @@ msgstr "متصل"
 msgid "Contact for Support"
 msgstr "تماس با پشتیبانی"
 
+msgid "CONTACT FORM OPERATIONS"
+msgstr "مرکز مدیریت فرم‌ها"
+
+msgid "contains"
+msgstr "شامل"
+
+msgid "Control how quickly messages are sent and what happens if a messenger is unavailable."
+msgstr "سرعت ارسال و رفتار هنگام در دسترس نبودن پیام‌رسان را تعیین کنید."
+
 msgid "Dashboard"
 msgstr "داشبورد"
+
+msgid "Data deletion"
+msgstr "حذف داده‌ها"
 
 msgid "Date"
 msgstr "تاریخ"
@@ -130,14 +259,41 @@ msgstr "تاریخ"
 msgid "Default Destinations"
 msgstr "مقصدهای پیش‌فرض"
 
+msgid "Default message template"
+msgstr "قالب پیام پیش‌فرض"
+
+msgid "Delete logs after (days)"
+msgstr "حذف گزارش‌ها پس از (روز)"
+
+msgid "Delete submissions after (days)"
+msgstr "حذف فرم‌های قدیمی پس از (روز)"
+
 msgid "Delete this rule?"
 msgstr "این قانون حذف شود؟"
+
+msgid "Delivered"
+msgstr "تحویل‌شده"
+
+msgid "Delivery engine"
+msgstr "موتور ارسال"
+
+msgid "Delivery health"
+msgstr "وضعیت ارسال اعلان‌ها"
+
+msgid "Delivery logs"
+msgstr "گزارش‌های تحویل"
 
 msgid "Delivery Logs"
 msgstr "گزارش تحویل"
 
+msgid "Delivery mode"
+msgstr "روش ارسال"
+
 msgid "Destinations"
 msgstr "مقصدها"
+
+msgid "Disabled by configuration"
+msgstr "در پیکربندی غیرفعال"
 
 msgid "Documentation"
 msgstr "مستندات"
@@ -160,8 +316,23 @@ msgstr "فعال‌کردن تلگرام (سراسری)"
 msgid "Enable Telegram for this form"
 msgstr "فعال‌کردن تلگرام برای این فرم"
 
+msgid "Enabled"
+msgstr "فعال"
+
+msgid "Enabled by configuration"
+msgstr "در پیکربندی فعال"
+
+msgid "ends with"
+msgstr "پایان می‌یابد با"
+
+msgid "equals"
+msgstr "برابر است با"
+
 msgid "Error"
 msgstr "خطا"
+
+msgid "exact-field-name"
+msgstr "نام-دقیق-فیلد"
 
 msgid "Export CSV"
 msgstr "دریافت CSV"
@@ -171,6 +342,9 @@ msgstr "ناموفق"
 
 msgid "Failed notifications retried."
 msgstr "اعلان‌های ناموفق دوباره تلاش شدند."
+
+msgid "Failed or partial"
+msgstr "ناموفق یا ناقص"
 
 msgid "Field Name Pattern:"
 msgstr "الگوی نام فیلد:"
@@ -199,8 +373,14 @@ msgstr "تنظیمات فرم ذخیره شد."
 msgid "Form title"
 msgstr "عنوان فرم"
 
+msgid "form title…"
+msgstr "عنوان فرم…"
+
 msgid "FormRelay CF7"
 msgstr "فرم‌رسان"
+
+msgid "FormRelay Dashboard"
+msgstr "داشبورد فرم‌رسان"
 
 msgid "Get your token from @BotFather on Telegram."
 msgstr "توکن را از @BotFather در تلگرام دریافت کنید."
@@ -217,8 +397,38 @@ msgstr "تعداد تلاش مجدد در صورت خطا؛ برای غیرفع�
 msgid "How rules work:"
 msgstr "نحوه عملکرد قوانین:"
 
+msgid "Immediate"
+msgstr "فوری"
+
+msgid "Immediate — during form submission"
+msgstr "فوری — هنگام ارسال فرم"
+
+msgid "Important details for checking delivery."
+msgstr "اطلاعات مهم برای بررسی وضعیت ارسال."
+
+msgid "Inbox"
+msgstr "صندوق پیام‌ها"
+
+msgid "Invalid channel."
+msgstr "کانال معتبر نیست."
+
+msgid "Invalid form ID."
+msgstr "شناسه فرم معتبر نیست."
+
 msgid "IP"
 msgstr "آی‌پی"
+
+msgid "is empty"
+msgstr "خالی است"
+
+msgid "is not empty"
+msgstr "خالی نیست"
+
+msgid "Last 7 days"
+msgstr "۷ روز گذشته"
+
+msgid "leave blank to use them"
+msgstr "برای استفاده از آن‌ها خالی بگذارید"
 
 msgid "Level"
 msgstr "سطح"
@@ -226,14 +436,26 @@ msgstr "سطح"
 msgid "Logs"
 msgstr "گزارش‌ها"
 
-msgid "Mask Sensitive Data"
-msgstr "پنهان‌سازی داده‌های حساس"
+msgid "Maintenance schedule"
+msgstr "زمان‌بندی نگهداری"
+
+msgid "Manage settings"
+msgstr "مدیریت تنظیمات"
+
+msgid "Mask email addresses and phone numbers"
+msgstr "پنهان‌سازی ایمیل‌ها و شماره تلفن‌ها"
 
 msgid "Mask phone numbers and emails in Logs (e.g. 0912******34)"
 msgstr "پنهان‌کردن شماره تلفن و ایمیل در گزارش‌ها (مثلاً 0912******34)"
 
+msgid "Mask Sensitive Data"
+msgstr "پنهان‌سازی داده‌های حساس"
+
 msgid "Master switch for Bale across all forms."
 msgstr "کلید اصلی بله برای همه فرم‌ها"
+
+msgid "Master switch. Individual forms can also be enabled/disabled from their own tab."
+msgstr "تنظیم پیش‌فرض سراسری؛ هر فرم می‌تواند تنظیمات اختصاصی داشته باشد."
 
 msgid "Match"
 msgstr "تطبیق"
@@ -241,20 +463,50 @@ msgstr "تطبیق"
 msgid "Max Retry Attempts"
 msgstr "حداکثر تلاش مجدد"
 
+msgid "Maximum automatic retries"
+msgstr "حداکثر تلاش‌های خودکار"
+
 msgid "Message"
 msgstr "پیام"
 
 msgid "Message Template"
 msgstr "قالب پیام"
 
+msgid "Messaging adapter unavailable."
+msgstr "سرویس پیام‌رسان در دسترس نیست."
+
 msgid "Name (your-name or similar)"
 msgstr "نام (your-name یا مشابه)"
 
-msgid "New Rule"
-msgstr "قانون جدید"
+msgid "name contains"
+msgstr "نام شامل"
+
+msgid "name ends with"
+msgstr "نام پایان می‌یابد با"
+
+msgid "name equals"
+msgstr "نام برابر است با"
+
+msgid "name matches regex"
+msgstr "نام مطابق عبارت منظم"
+
+msgid "name starts with"
+msgstr "نام شروع می‌شود با"
+
+msgid "New Contact Form 7 submissions will appear here."
+msgstr "فرم‌های جدید Contact Form 7 در این بخش نمایش داده می‌شوند."
 
 msgid "New form submission"
 msgstr "ارسال فرم جدید"
+
+msgid "New form submissions will still be stored. Queued and retry jobs wait until this option is turned off. Does not affect Contact Form 7 email."
+msgstr "فرم‌های جدید همچنان ذخیره می‌شوند و کارهای صف تا لغو توقف منتظر می‌مانند. ایمیل Contact Form 7 تغییری نمی‌کند."
+
+msgid "New requests"
+msgstr "درخواست‌های جدید"
+
+msgid "New Rule"
+msgstr "قانون جدید"
 
 msgid "No failed notifications are available for retry."
 msgstr "اعلان ناموفقی برای ارسال مجدد وجود ندارد."
@@ -271,20 +523,65 @@ msgstr "ارسالی یافت نشد."
 msgid "No submissions yet."
 msgstr "هنوز فرمی ارسال نشده است."
 
+msgid "Not scheduled"
+msgstr "زمان‌بندی نشده"
+
 msgid "Notification Engine"
 msgstr "موتور اعلان"
 
 msgid "Notification re-sent."
 msgstr "اعلان دوباره ارسال شد."
 
+msgid "Notification settings"
+msgstr "تنظیمات اعلان‌ها"
+
+msgid "Notifications active"
+msgstr "اعلان‌ها فعال هستند"
+
+msgid "Notifications are paused in Settings."
+msgstr "اعلان‌ها از بخش تنظیمات متوقف شده‌اند."
+
+msgid "Notifications paused"
+msgstr "اعلان‌ها متوقف شده‌اند"
+
+msgid "Off by default"
+msgstr "به‌صورت پیش‌فرض خاموش"
+
+msgid "One Chat ID or @channel per line. Used when a form has no custom destinations set."
+msgstr "در هر خط یک شناسه چت یا @کانال وارد کنید. وقتی برای فرم مقصد اختصاصی تعیین نشده باشد استفاده می‌شود."
+
+msgid "Open delivery logs"
+msgstr "نمایش گزارش‌های تحویل"
+
+msgid "Open forms"
+msgstr "نمایش فرم‌ها"
+
 msgid "Or click the main \"Save\" button of CF7 to save everything at once."
 msgstr "یا برای ذخیره همه تنظیمات، روی دکمه اصلی «ذخیره» فرم کلیک کنید."
+
+msgid "or open a support request."
+msgstr "یا درخواست پشتیبانی ثبت کنید."
+
+msgid "Outbound messages are paused."
+msgstr "ارسال پیام به پیام‌رسان‌ها متوقف شده است."
 
 msgid "Override message template for this destination (leave blank to use global template):"
 msgstr "قالب پیام مخصوص این مقصد (برای استفاده از قالب سراسری خالی بگذارید):"
 
 msgid "Page URL"
 msgstr "آدرس صفحه"
+
+msgid "Partially delivered"
+msgstr "تحویل ناقص"
+
+msgid "Pause all outbound messenger delivery without losing new form submissions."
+msgstr "بدون از دست رفتن فرم‌های جدید، ارسال به پیام‌رسان‌ها را متوقف کنید."
+
+msgid "Pause Telegram and Bale notifications"
+msgstr "توقف موقت اعلان‌های تلگرام و بله"
+
+msgid "Pending"
+msgstr "در انتظار"
 
 msgid "Per-form Settings"
 msgstr "تنظیمات اختصاصی فرم"
@@ -295,14 +592,38 @@ msgstr "تلفن"
 msgid "Plugin Page"
 msgstr "صفحه افزونه"
 
+msgid "Plugin version"
+msgstr "نسخه افزونه"
+
+msgid "Privacy and data retention"
+msgstr "حریم خصوصی و نگهداری داده‌ها"
+
+msgid "Queue mode"
+msgstr "حالت صف"
+
 msgid "Queue Mode"
 msgstr "حالت صف ارسال"
+
+msgid "radio, checkbox, …"
+msgstr "رادیویی، چک‌باکس، …"
+
+msgid "Recent activity"
+msgstr "فعالیت اخیر"
+
+msgid "Recent submissions"
+msgstr "ارسال‌های اخیر"
 
 msgid "Recent Submissions"
 msgstr "ارسال‌های اخیر"
 
+msgid "Record delivery attempts and errors"
+msgstr "ثبت تلاش‌های ارسال و خطاها"
+
 msgid "Record every delivery attempt in the Logs table"
 msgstr "ثبت هر تلاش برای تحویل در جدول گزارش‌ها"
+
+msgid "regex"
+msgstr "عبارت منظم"
 
 msgid "Remove"
 msgstr "حذف"
@@ -310,8 +631,20 @@ msgstr "حذف"
 msgid "Request failed."
 msgstr "درخواست ناموفق بود."
 
+msgid "Requires attention"
+msgstr "نیازمند بررسی"
+
 msgid "Resend"
 msgstr "ارسال مجدد"
+
+msgid "Resume notifications"
+msgstr "فعال‌سازی مجدد اعلان‌ها"
+
+msgid "Retry failed"
+msgstr "تلاش مجدد ناموفق‌ها"
+
+msgid "Retry interval (seconds)"
+msgstr "فاصله تلاش مجدد (ثانیه)"
 
 msgid "Retry Interval (seconds)"
 msgstr "فاصله تلاش مجدد (ثانیه)"
@@ -322,8 +655,17 @@ msgstr "نام قانون"
 msgid "Rules saved."
 msgstr "قوانین ذخیره شدند."
 
+msgid "Safety controls"
+msgstr "کنترل‌های ایمنی"
+
+msgid "Save a bot token and destination first."
+msgstr "ابتدا توکن ربات و مقصد را ذخیره کنید."
+
 msgid "Save All Rules"
 msgstr "ذخیره همه قوانین"
+
+msgid "Save all settings"
+msgstr "ذخیره همه تنظیمات"
 
 msgid "Save Bale Settings"
 msgstr "ذخیره تنظیمات بله"
@@ -346,26 +688,59 @@ msgstr "جست‌وجو…"
 msgid "Seconds to wait between each retry."
 msgstr "فاصله زمانی بین تلاش‌های مجدد، به ثانیه"
 
+msgid "Send test message"
+msgstr "ارسال پیام آزمایشی"
+
 msgid "Sending…"
 msgstr "در حال ارسال…"
+
+msgid "Sends a harmless sample to the first saved destination. Save the settings before testing."
+msgstr "یک پیام بی‌خطر به اولین مقصد ذخیره‌شده ارسال می‌شود. پیش از آزمایش، تنظیمات را ذخیره کنید."
+
+msgid "Sensitive data in logs"
+msgstr "اطلاعات حساس در گزارش‌ها"
+
+msgid "Set up"
+msgstr "نیازمند تنظیم"
 
 msgid "Settings"
 msgstr "تنظیمات"
 
+msgid "Settings are saved for this site only. Scheduled cleanup runs when WordPress cron is executed."
+msgstr "تنظیمات فقط برای این سایت ذخیره می‌شوند. پاک‌سازی زمان‌بندی‌شده هنگام اجرای کرون وردپرس انجام می‌شود."
+
 msgid "Settings saved."
 msgstr "تنظیمات ذخیره شد."
+
+msgid "starts with"
+msgstr "شروع می‌شود با"
 
 msgid "Status"
 msgstr "وضعیت"
 
+msgid "Store IP addresses with new submissions"
+msgstr "ذخیره آی‌پی در فرم‌های جدید"
+
+msgid "Store user-agent with new submissions"
+msgstr "ذخیره مشخصات مرورگر در فرم‌های جدید"
+
 msgid "Subject"
 msgstr "موضوع"
+
+msgid "Submission counts for the last seven days"
+msgstr "تعداد فرم‌های ارسال‌شده در هفت روز گذشته"
 
 msgid "Submission date"
 msgstr "تاریخ ارسال"
 
+msgid "Submission trend"
+msgstr "روند ارسال فرم‌ها"
+
 msgid "Submissions"
 msgstr "ارسال‌های فرم"
+
+msgid "Submissions are still stored. Pending deliveries will resume when notifications are enabled."
+msgstr "اطلاعات فرم همچنان ذخیره می‌شود. ارسال‌های در انتظار پس از فعال‌سازی دوباره ادامه می‌یابند."
 
 msgid "Supercharge Contact Form 7 with Telegram & Bale notifications, per-form settings, automation rules, and submission management."
 msgstr "افزودن اعلان‌های تلگرام و بله، تنظیمات اختصاصی هر فرم، قوانین خودکارسازی و مدیریت ارسال‌ها به Contact Form 7"
@@ -376,29 +751,59 @@ msgstr "هم‌زمان — فوری (کندتر)"
 msgid "Synchronous:"
 msgstr "هم‌زمان:"
 
-msgid "THEN — send to:"
-msgstr "سپس ارسال به:"
+msgid "System details"
+msgstr "جزئیات سامانه"
+
+msgid "System overview"
+msgstr "نمای کلی سامانه"
+
+msgid "tab of each form."
+msgstr "زبانه هر فرم مدیریت می‌شوند."
+
+msgid "tab."
+msgstr "زبانه استفاده کنید."
 
 msgid "Telegram"
 msgstr "تلگرام"
 
-msgid "Telegram settings saved."
-msgstr "تنظیمات تلگرام ذخیره شد."
-
 msgid "Telegram — Global Settings"
 msgstr "تلگرام — تنظیمات سراسری"
+
+msgid "Telegram settings saved."
+msgstr "تنظیمات تلگرام ذخیره شد."
 
 msgid "Test Connection"
 msgstr "تست اتصال"
 
+msgid "Test failed. Check your token, destination, and logs."
+msgstr "ارسال آزمایشی ناموفق بود. توکن، مقصد و گزارش‌ها را بررسی کنید."
+
+msgid "Test form"
+msgstr "فرم آزمایشی"
+
+msgid "Test message sent to the first saved destination."
+msgstr "پیام آزمایشی به اولین مقصد ذخیره‌شده ارسال شد."
+
 msgid "Testing…"
 msgstr "در حال آزمایش…"
 
-msgid "This Week"
-msgstr "این هفته"
+msgid "THEN — send to:"
+msgstr "سپس ارسال به:"
 
 msgid "This form's fields:"
 msgstr "فیلدهای این فرم:"
+
+msgid "This masks log context, not the original form submission fields."
+msgstr "این گزینه داده‌های زمینه‌ای گزارش را پنهان می‌کند، نه فیلدهای اصلی فرم."
+
+msgid "This page configures the global Bale bot. Per-form templates and destinations are managed in the"
+msgstr "در این صفحه ربات سراسری بله تنظیم می‌شود. قالب و مقصد اختصاصی هر فرم در"
+
+msgid "This page configures the global Telegram bot token and default destinations. To set a custom message template or per-form destinations, open any CF7 form and use the"
+msgstr "در این صفحه توکن سراسری ربات تلگرام و مقصدهای پیش‌فرض تنظیم می‌شوند. برای قالب اختصاصی یا مقصدهای هر فرم، فرم مورد نظر را باز کنید و از"
+
+msgid "This Week"
+msgstr "این هفته"
 
 msgid "Time"
 msgstr "زمان"
@@ -406,122 +811,53 @@ msgstr "زمان"
 msgid "Today"
 msgstr "امروز"
 
+msgid "Total submissions"
+msgstr "مجموع فرم‌های ارسالی"
+
 msgid "Total Submissions"
 msgstr "کل ارسال‌ها"
+
+msgid "Track form submissions, check notification channels, and respond to delivery issues."
+msgstr "ارسال‌های فرم را ببینید، کانال‌ها را بررسی کنید و مشکلات تحویل را پیگیری کنید."
 
 msgid "Unable to generate CSV."
 msgstr "ایجاد فایل CSV ممکن نیست."
 
+msgid "Use placeholders such as {name}, {form_name}, {all_fields}. Form-specific templates override this default."
+msgstr "از متغیرهای {name}، {form_name} و {all_fields} استفاده کنید. قالب هر فرم بر این مقدار مقدم است."
+
 msgid "Used when a form has no custom destinations set."
 msgstr "وقتی برای فرم مقصد اختصاصی مشخص نشده باشد، استفاده می‌شود."
-
-msgid "Value:"
-msgstr "مقدار:"
-
-msgid "View All Submissions →"
-msgstr "نمایش همه ارسال‌ها ←"
-
-msgid "Visitor IP address"
-msgstr "آی‌پی بازدیدکننده"
-
-msgid "contains"
-msgstr "شامل"
-
-msgid "ends with"
-msgstr "پایان می‌یابد با"
-
-msgid "equals"
-msgstr "برابر است با"
-
-msgid "exact-field-name"
-msgstr "نام-دقیق-فیلد"
-
-msgid "form title…"
-msgstr "عنوان فرم…"
-
-msgid "is empty"
-msgstr "خالی است"
-
-msgid "is not empty"
-msgstr "خالی نیست"
-
-msgid "leave blank to use them"
-msgstr "برای استفاده از آن‌ها خالی بگذارید"
-
-msgid "name contains"
-msgstr "نام شامل"
-
-msgid "name ends with"
-msgstr "نام پایان می‌یابد با"
-
-msgid "name equals"
-msgstr "نام برابر است با"
-
-msgid "name matches regex"
-msgstr "نام مطابق عبارت منظم"
-
-msgid "name starts with"
-msgstr "نام شروع می‌شود با"
-
-msgid "or open a support request."
-msgstr "یا درخواست پشتیبانی ثبت کنید."
-
-msgid "radio, checkbox, …"
-msgstr "رادیویی، چک‌باکس، …"
-
-msgid "regex"
-msgstr "عبارت منظم"
-
-msgid "starts with"
-msgstr "شروع می‌شود با"
 
 msgid "value"
 msgstr "مقدار"
 
-msgid "~ contains"
-msgstr "~ شامل"
+msgid "Value:"
+msgstr "مقدار:"
 
-msgid "— select form —"
-msgstr "— انتخاب فرم —"
+msgid "View all"
+msgstr "نمایش همه"
 
-msgid "≠ not equals"
-msgstr "≠ برابر نیست با"
+msgid "View All Submissions →"
+msgstr "نمایش همه ارسال‌ها ←"
 
-msgid "≤ ≤"
-msgstr "≤ کوچک‌تر یا مساوی"
+msgid "View delivery logs"
+msgstr "نمایش گزارش‌های تحویل"
 
-msgid "≥ ≥"
-msgstr "≥ بزرگ‌تر یا مساوی"
+msgid "Visitor IP address"
+msgstr "آی‌پی بازدیدکننده"
 
-msgid "⊛ regex"
-msgstr "⊛ عبارت منظم"
+msgid "Waiting submissions"
+msgstr "ارسال‌های در انتظار"
 
-msgid "▲ Custom template"
-msgstr "▲ قالب اختصاصی"
+msgid "WP-Cron"
+msgstr "WP-Cron"
 
-msgid "▼ Custom template"
-msgstr "▼ قالب اختصاصی"
+msgid "WP-Cron configuration"
+msgstr "تنظیمات WP-Cron"
 
-msgid "⚠ Bot token not set globally"
-msgstr "⚠ توکن ربات در تنظیمات سراسری وارد نشده است"
+msgid "WP-Cron is disabled."
+msgstr "WP-Cron غیرفعال است."
 
-msgid "✕ Delete"
-msgstr "✕ حذف"
-
-msgid "🏷 Form title"
-msgstr "🏷 عنوان فرم"
-
-msgid "💬 Bale"
-msgstr "💬 بله"
-
-msgid "📄 Form (select from list)"
-msgstr "📄 فرم (انتخاب از فهرست)"
-
-msgid "📋 Field name pattern + value"
-msgstr "📋 الگوی نام فیلد و مقدار"
-
-msgid "📨 Telegram"
-msgstr "📨 تلگرام"
-
-msgid "🔤 Exact field name + value"
-msgstr "🔤 نام دقیق فیلد و مقدار"
+msgid "Your inbox is ready"
+msgstr "صندوق پیام‌ها آماده است"
