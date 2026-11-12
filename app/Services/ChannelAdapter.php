@@ -27,7 +27,7 @@ abstract class ChannelAdapter {
         $payload  = $this->buildPayload( $message, $destination );
         $url      = $this->getApiEndpoint( $options['bot_token'] );
 
-        $response = wp_remote_post( $url, [
+        $response = wp_safe_remote_post( $url, [
             'timeout' => 15,
             'headers' => [ 'Content-Type' => 'application/json' ],
             'body'    => wp_json_encode( $payload ),
@@ -42,7 +42,7 @@ abstract class ChannelAdapter {
         $code = wp_remote_retrieve_response_code( $response );
         $body = json_decode( wp_remote_retrieve_body( $response ), true );
 
-        if ( $code === 200 && ! empty( $body['ok'] ) ) {
+        if ( $code >= 200 && $code < 300 && is_array( $body ) && ! empty( $body['ok'] ) ) {
             LogService::write( $this->getOptionKey(), 'info', "Delivered to $destination" );
             return [ 'success' => true ];
         }
