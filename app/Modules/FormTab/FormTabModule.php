@@ -109,17 +109,17 @@ class FormTabModule {
         }
 
         $system_placeholders = [
-            '{name}'            => 'نام (your-name و مشابه)',
-            '{email}'           => 'ایمیل',
-            '{phone}'           => 'تلفن',
-            '{message}'         => 'پیام',
-            '{subject}'         => 'موضوع',
-            '{form_name}'       => 'نام فرم',
-            '{submission_date}' => 'تاریخ ارسال',
-            '{form_id}'         => 'شناسه فرم',
-            '{ip_address}'      => 'آی‌پی بازدیدکننده',
-            '{referrer}'        => 'آدرس صفحه',
-            '{all_fields}'      => 'همه فیلدها (لیست کامل)',
+            '{name}'            => __( 'Name (your-name or similar)', 'cf7-booster' ),
+            '{email}'           => __( 'Email', 'cf7-booster' ),
+            '{phone}'           => __( 'Phone', 'cf7-booster' ),
+            '{message}'         => __( 'Message', 'cf7-booster' ),
+            '{subject}'         => __( 'Subject', 'cf7-booster' ),
+            '{form_name}'       => __( 'Form title', 'cf7-booster' ),
+            '{submission_date}' => __( 'Submission date', 'cf7-booster' ),
+            '{form_id}'         => __( 'Form ID', 'cf7-booster' ),
+            '{ip_address}'      => __( 'Visitor IP address', 'cf7-booster' ),
+            '{referrer}'        => __( 'Page URL', 'cf7-booster' ),
+            '{all_fields}'      => __( 'All fields', 'cf7-booster' ),
         ];
 
         require CF7ON_PATH . 'templates/admin/form-tab.php';
