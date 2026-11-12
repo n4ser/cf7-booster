@@ -193,7 +193,7 @@ class QueueService {
                 $targets[] = [
                     'channel'     => $channel,
                     'destination' => $destination,
-                    'template'    => $config['template'] ?: ( $global['template'] ?? '' ),
+                    'template'    => ! empty( $config['template'] ) ? $config['template'] : ( $global['template'] ?? '' ),
                 ];
             }
         }
