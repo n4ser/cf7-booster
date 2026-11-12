@@ -48,11 +48,13 @@ $destinations = implode( "\n", (array) ( $options['destinations'] ?? [] ) );
                     <p class="description"><?php esc_html_e( 'Used when a form has no custom destinations set.', 'cf7-booster' ); ?></p>
                 </td>
             </tr>
-            <div class="cf7on-channel-template">
-                <label for="ba_template"><strong><?php esc_html_e( 'Default message template', 'cf7-booster' ); ?></strong></label>
-                <textarea class="large-text code" id="ba_template" rows="6"><?php echo esc_textarea( $options['template'] ?? '' ); ?></textarea>
-                <p class="description"><?php esc_html_e( 'Use placeholders such as {name}, {form_name}, {all_fields}. Form-specific templates override this default.', 'cf7-booster' ); ?></p>
-            </div>
+            <tr>
+                <th><label for="ba_template"><?php esc_html_e( 'Default message template', 'cf7-booster' ); ?></label></th>
+                <td>
+                    <textarea class="large-text code" id="ba_template" rows="6"><?php echo esc_textarea( $options['template'] ?? '' ); ?></textarea>
+                    <p class="description"><?php esc_html_e( 'Use placeholders such as {name}, {form_name}, {all_fields}. Form-specific templates override this default.', 'cf7-booster' ); ?></p>
+                </td>
+            </tr>
         </table>
 
         <button type="button" class="button button-primary cf7on-save" data-action="cf7on_save_bale"
