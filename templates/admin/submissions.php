@@ -42,11 +42,16 @@
         </thead>
         <tbody>
         <?php foreach ( $submissions as $s ) :
-            $preview = implode( ', ', array_slice( array_map(
-                fn($k,$v) => "$k: $v",
-                array_keys( $s['fields'] ),
-                $s['fields']
-            ), 0, 3 ) );
+            $preview_parts = [];
+            foreach ( array_slice( (array) $s['fields'], 0, 3, true ) as $field_name => $field_value ) {
+                if ( is_array( $field_value ) ) {
+                    $field_value = implode( ', ', array_map( 'strval', array_filter( $field_value, 'is_scalar' ) ) );
+                } elseif ( ! is_scalar( $field_value ) ) {
+                    $field_value = '';
+                }
+                $preview_parts[] = $field_name . ': ' . $field_value;
+            }
+            $preview = implode( ', ', $preview_parts );
         ?>
             <tr>
                 <td><?php echo absint( $s['id'] ); ?></td>
@@ -56,9 +61,13 @@
                 <td><span class="cf7on-badge cf7on-badge--<?php echo esc_attr( $s['status'] ); ?>"><?php echo esc_html( ucfirst( $s['status'] ) ); ?></span></td>
                 <td><?php echo esc_html( $s['created_at'] ); ?></td>
                 <td>
-                    <button class="button button-small cf7on-resend" data-id="<?php echo absint( $s['id'] ); ?>">
-                        <?php esc_html_e( 'Resend', 'cf7-booster' ); ?>
-                    </button>
+                    <?php if ( in_array( $s['status'], [ 'failed', 'partial' ], true ) ) : ?>
+                        <button class="button button-small cf7on-resend" data-id="<?php echo absint( $s['id'] ); ?>">
+                            <?php esc_html_e( 'Retry failed', 'cf7-booster' ); ?>
+                        </button>
+                    <?php else : ?>
+                        <span aria-hidden="true">—</span>
+                    <?php endif; ?>
                 </td>
             </tr>
         <?php endforeach; ?>
