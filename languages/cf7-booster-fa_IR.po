@@ -1,16 +1,14 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: CF7 Booster 1.1.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-13 00:00+0000\n"
-"PO-Revision-Date: 2026-11-13 00:00+0000\n"
-"Last-Translator: \n"
-"Language-Team: Persian\n"
+"Project-Id-Version: CF7 Booster 1.2.0-beta1\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "!~ not contains"
+msgstr "!~ شامل نیست"
 
 msgid "(click a placeholder above to insert it)"
 msgstr "(برای درج متغیر روی آن کلیک کنید)"
@@ -20,6 +18,30 @@ msgstr "(هر شناسه چت یا @کانال در یک خط؛ جایگزین �
 
 msgid "(one Chat ID or @channel per line)"
 msgstr "(در هر خط یک شناسه چت یا @کانال)"
+
+msgid "+ Add Rule"
+msgstr "+ افزودن قانون"
+
+msgid "+ Add channel / destination"
+msgstr "+ افزودن کانال یا مقصد"
+
+msgid "+ Add condition"
+msgstr "+ افزودن شرط"
+
+msgid "< less than"
+msgstr "< کوچک‌تر از"
+
+msgid "= equals"
+msgstr "= برابر است با"
+
+msgid "> greater than"
+msgstr "> بزرگ‌تر از"
+
+msgid "ALL conditions (AND)"
+msgstr "همه شرط‌ها (AND)"
+
+msgid "ANY condition (OR)"
+msgstr "حداقل یکی از شرط‌ها (OR)"
 
 msgid "Action"
 msgstr "عمل"
@@ -41,6 +63,9 @@ msgstr "همه سطوح"
 
 msgid "All Statuses"
 msgstr "همه وضعیت‌ها"
+
+msgid "All fields"
+msgstr "همه فیلدها"
 
 msgid "Asynchronous (recommended):"
 msgstr "غیرهم‌زمان (پیشنهادی):"
@@ -84,6 +109,9 @@ msgstr "فرم‌رسان — تنظیمات"
 msgid "Channel"
 msgstr "کانال"
 
+msgid "Chat ID or @channel"
+msgstr "شناسه چت یا @کانال"
+
 msgid "Configure"
 msgstr "پیکربندی"
 
@@ -113,6 +141,9 @@ msgstr "مقصدها"
 
 msgid "Documentation"
 msgstr "مستندات"
+
+msgid "Email"
+msgstr "ایمیل"
 
 msgid "Enable Bale (global)"
 msgstr "فعال‌کردن بله (سراسری)"
@@ -144,6 +175,9 @@ msgstr "اعلان‌های ناموفق دوباره تلاش شدند."
 msgid "Field Name Pattern:"
 msgstr "الگوی نام فیلد:"
 
+msgid "Field name:"
+msgstr "نام فیلد:"
+
 msgid "Fields Preview"
 msgstr "پیش‌نمایش فیلدها"
 
@@ -156,8 +190,14 @@ msgstr "برای گزارش خطا، پیشنهاد قابلیت یا توسعه
 msgid "Form"
 msgstr "فرم"
 
+msgid "Form ID"
+msgstr "شناسه فرم"
+
 msgid "Form settings saved."
 msgstr "تنظیمات فرم ذخیره شد."
+
+msgid "Form title"
+msgstr "عنوان فرم"
 
 msgid "FormRelay CF7"
 msgstr "فرم‌رسان"
@@ -195,6 +235,9 @@ msgstr "پنهان‌کردن شماره تلفن و ایمیل در گزارش�
 msgid "Master switch for Bale across all forms."
 msgstr "کلید اصلی بله برای همه فرم‌ها"
 
+msgid "Match"
+msgstr "تطبیق"
+
 msgid "Max Retry Attempts"
 msgstr "حداکثر تلاش مجدد"
 
@@ -204,14 +247,23 @@ msgstr "پیام"
 msgid "Message Template"
 msgstr "قالب پیام"
 
+msgid "Name (your-name or similar)"
+msgstr "نام (your-name یا مشابه)"
+
 msgid "New Rule"
 msgstr "قانون جدید"
+
+msgid "New form submission"
+msgstr "ارسال فرم جدید"
 
 msgid "No failed notifications are available for retry."
 msgstr "اعلان ناموفقی برای ارسال مجدد وجود ندارد."
 
 msgid "No log entries found."
 msgstr "گزارشی یافت نشد."
+
+msgid "No rules yet. Click \"+ Add Rule\" to get started."
+msgstr "هنوز قانونی وجود ندارد. برای شروع روی «+ افزودن قانون» کلیک کنید."
 
 msgid "No submissions found."
 msgstr "ارسالی یافت نشد."
@@ -228,8 +280,17 @@ msgstr "اعلان دوباره ارسال شد."
 msgid "Or click the main \"Save\" button of CF7 to save everything at once."
 msgstr "یا برای ذخیره همه تنظیمات، روی دکمه اصلی «ذخیره» فرم کلیک کنید."
 
+msgid "Override message template for this destination (leave blank to use global template):"
+msgstr "قالب پیام مخصوص این مقصد (برای استفاده از قالب سراسری خالی بگذارید):"
+
+msgid "Page URL"
+msgstr "آدرس صفحه"
+
 msgid "Per-form Settings"
 msgstr "تنظیمات اختصاصی فرم"
+
+msgid "Phone"
+msgstr "تلفن"
 
 msgid "Plugin Page"
 msgstr "صفحه افزونه"
@@ -243,6 +304,9 @@ msgstr "ارسال‌های اخیر"
 msgid "Record every delivery attempt in the Logs table"
 msgstr "ثبت هر تلاش برای تحویل در جدول گزارش‌ها"
 
+msgid "Remove"
+msgstr "حذف"
+
 msgid "Request failed."
 msgstr "درخواست ناموفق بود."
 
@@ -251,6 +315,9 @@ msgstr "ارسال مجدد"
 
 msgid "Retry Interval (seconds)"
 msgstr "فاصله تلاش مجدد (ثانیه)"
+
+msgid "Rule name"
+msgstr "نام قانون"
 
 msgid "Rules saved."
 msgstr "قوانین ذخیره شدند."
@@ -291,6 +358,12 @@ msgstr "تنظیمات ذخیره شد."
 msgid "Status"
 msgstr "وضعیت"
 
+msgid "Subject"
+msgstr "موضوع"
+
+msgid "Submission date"
+msgstr "تاریخ ارسال"
+
 msgid "Submissions"
 msgstr "ارسال‌های فرم"
 
@@ -302,6 +375,9 @@ msgstr "هم‌زمان — فوری (کندتر)"
 
 msgid "Synchronous:"
 msgstr "هم‌زمان:"
+
+msgid "THEN — send to:"
+msgstr "سپس ارسال به:"
 
 msgid "Telegram"
 msgstr "تلگرام"
@@ -339,14 +415,113 @@ msgstr "ایجاد فایل CSV ممکن نیست."
 msgid "Used when a form has no custom destinations set."
 msgstr "وقتی برای فرم مقصد اختصاصی مشخص نشده باشد، استفاده می‌شود."
 
+msgid "Value:"
+msgstr "مقدار:"
+
 msgid "View All Submissions →"
 msgstr "نمایش همه ارسال‌ها ←"
+
+msgid "Visitor IP address"
+msgstr "آی‌پی بازدیدکننده"
+
+msgid "contains"
+msgstr "شامل"
+
+msgid "ends with"
+msgstr "پایان می‌یابد با"
+
+msgid "equals"
+msgstr "برابر است با"
+
+msgid "exact-field-name"
+msgstr "نام-دقیق-فیلد"
+
+msgid "form title…"
+msgstr "عنوان فرم…"
+
+msgid "is empty"
+msgstr "خالی است"
+
+msgid "is not empty"
+msgstr "خالی نیست"
 
 msgid "leave blank to use them"
 msgstr "برای استفاده از آن‌ها خالی بگذارید"
 
+msgid "name contains"
+msgstr "نام شامل"
+
+msgid "name ends with"
+msgstr "نام پایان می‌یابد با"
+
+msgid "name equals"
+msgstr "نام برابر است با"
+
+msgid "name matches regex"
+msgstr "نام مطابق عبارت منظم"
+
+msgid "name starts with"
+msgstr "نام شروع می‌شود با"
+
 msgid "or open a support request."
 msgstr "یا درخواست پشتیبانی ثبت کنید."
 
+msgid "radio, checkbox, …"
+msgstr "رادیویی، چک‌باکس، …"
+
+msgid "regex"
+msgstr "عبارت منظم"
+
+msgid "starts with"
+msgstr "شروع می‌شود با"
+
+msgid "value"
+msgstr "مقدار"
+
+msgid "~ contains"
+msgstr "~ شامل"
+
+msgid "— select form —"
+msgstr "— انتخاب فرم —"
+
+msgid "≠ not equals"
+msgstr "≠ برابر نیست با"
+
+msgid "≤ ≤"
+msgstr "≤ کوچک‌تر یا مساوی"
+
+msgid "≥ ≥"
+msgstr "≥ بزرگ‌تر یا مساوی"
+
+msgid "⊛ regex"
+msgstr "⊛ عبارت منظم"
+
+msgid "▲ Custom template"
+msgstr "▲ قالب اختصاصی"
+
+msgid "▼ Custom template"
+msgstr "▼ قالب اختصاصی"
+
 msgid "⚠ Bot token not set globally"
 msgstr "⚠ توکن ربات در تنظیمات سراسری وارد نشده است"
+
+msgid "✕ Delete"
+msgstr "✕ حذف"
+
+msgid "🏷 Form title"
+msgstr "🏷 عنوان فرم"
+
+msgid "💬 Bale"
+msgstr "💬 بله"
+
+msgid "📄 Form (select from list)"
+msgstr "📄 فرم (انتخاب از فهرست)"
+
+msgid "📋 Field name pattern + value"
+msgstr "📋 الگوی نام فیلد و مقدار"
+
+msgid "📨 Telegram"
+msgstr "📨 تلگرام"
+
+msgid "🔤 Exact field name + value"
+msgstr "🔤 نام دقیق فیلد و مقدار"
