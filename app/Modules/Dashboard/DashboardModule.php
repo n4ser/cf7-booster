@@ -198,10 +198,20 @@ class DashboardModule {
             }
         }
         $token = $input['bot_token'] ?? '';
+        $token = is_scalar( $token ) ? sanitize_text_field( (string) $token ) : '';
+        if ( $token === '' && empty( $input['clear_token'] ) ) {
+            $token = (string) ( $existing['bot_token'] ?? '' );
+        }
+        if ( ! empty( $input['clear_token'] ) ) {
+            $token = '';
+        }
+        if ( $token !== '' && ! preg_match( '/^[A-Za-z0-9:_-]{8,250}$/D', $token ) ) {
+            wp_send_json_error( __( 'Invalid bot token format.', 'cf7-booster' ) );
+        }
         $template = $input['template'] ?? ( $existing['template'] ?? '' );
         update_option( 'cf7on_' . $channel, [
             'enabled'      => ! empty( $input['enabled'] ),
-            'bot_token'    => is_scalar( $token ) ? sanitize_text_field( (string) $token ) : '',
+            'bot_token'    => $token,
             'destinations' => array_values( array_unique( $cleanDestinations ) ),
             'template'     => is_string( $template ) ? sanitize_textarea_field( $template ) : '',
         ] );
@@ -292,19 +302,27 @@ class DashboardModule {
     }
 
     public function ajaxTestTelegram(): void {
-        $this->verifyNonce();
-        $token   = sanitize_text_field( $_POST['bot_token'] ?? '' );
-        $adapter = \CF7ON\Core\Plugin::getInstance()->get( 'telegram' );
-        $result  = $adapter->testConnection( $token );
-        $result['success'] ? wp_send_json_success( $result ) : wp_send_json_error( $result['error'] );
+        $this->ajaxTestChannel( 'telegram' );
     }
 
     public function ajaxTestBale(): void {
+        $this->ajaxTestChannel( 'bale' );
+    }
+
+    private function ajaxTestChannel( string $channel ): void {
         $this->verifyNonce();
-        $token   = sanitize_text_field( $_POST['bot_token'] ?? '' );
-        $adapter = \CF7ON\Core\Plugin::getInstance()->get( 'bale' );
-        $result  = $adapter->testConnection( $token );
-        $result['success'] ? wp_send_json_success( $result ) : wp_send_json_error( $result['error'] );
+        $incoming = wp_unslash( $_POST['bot_token'] ?? '' );
+        $token = is_scalar( $incoming ) ? sanitize_text_field( (string) $incoming ) : '';
+        if ( $token === '' ) {
+            $settings = get_option( 'cf7on_' . $channel, [] );
+            $token = is_array( $settings ) ? (string) ( $settings['bot_token'] ?? '' ) : '';
+        }
+        $adapter = \CF7ON\Core\Plugin::getInstance()->get( $channel );
+        $result = $adapter->testConnection( $token );
+        if ( ! empty( $result['success'] ) ) {
+            wp_send_json_success( [ 'bot' => $result['bot'] ?? [] ] );
+        }
+        wp_send_json_error( $result['error'] ?? __( 'Connection failed.', 'cf7-booster' ) );
     }
 
     public function ajaxSendTest(): void {
@@ -327,6 +345,10 @@ class DashboardModule {
             wp_send_json_error( __( 'Notifications are paused in Settings.', 'cf7-booster' ) );
         }
 
+        $rateKey = 'cf7on_test_' . $channel . '_' . get_current_user_id();
+        if ( get_transient( $rateKey ) ) {
+            wp_send_json_error( __( 'Please wait before sending another test.', 'cf7-booster' ) );
+        }
         $adapter = \CF7ON\Core\Plugin::getInstance()->get( $channel );
         if ( ! $adapter ) {
             wp_send_json_error( __( 'Messaging adapter unavailable.', 'cf7-booster' ) );
@@ -338,6 +360,7 @@ class DashboardModule {
             'form_name' => __( 'Test form', 'cf7-booster' ),
             'fields' => [],
         ];
+        set_transient( $rateKey, 1, 30 );
         $result = $adapter->send( $data, [
             'destination' => $destination,
             'template' => __( '✅ Test notification from FormRelay CF7. Your messaging channel is working.', 'cf7-booster' ),
