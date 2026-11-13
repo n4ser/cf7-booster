@@ -22,6 +22,17 @@ class LogService {
             $context = self::maskContext( $context );
         }
 
+        // Scrub credentials from messages and context before persisting.
+        $scrub = static function ( $value ) {
+            return is_string( $value )
+                ? preg_replace( '/[0-9]{5,15}:[A-Za-z0-9_-]{10,}/', '[redacted-token]', $value )
+                : $value;
+        };
+        $message = $scrub( $message );
+        array_walk_recursive( $context, static function ( &$value ) use ( $scrub ) {
+            $value = $scrub( $value );
+        } );
+
         global $wpdb;
         $wpdb->insert(
             $wpdb->prefix . 'cf7on_logs',

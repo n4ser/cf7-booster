@@ -29,31 +29,35 @@ abstract class ChannelAdapter {
         }
         $message  = $this->renderTemplate( $template, $data );
         $payload  = $this->buildPayload( $message, $destination );
-        $url      = $this->getApiEndpoint( $options['bot_token'] );
+        $token = (string) $options['bot_token'];
+        if ( ! preg_match( '/^[A-Za-z0-9:_-]{8,250}$/D', $token ) ) {
+            return [ 'success' => false, 'retryable' => false, 'error' => 'Invalid bot token format.' ];
+        }
+        $url = $this->getApiEndpoint( $token );
 
         $response = wp_safe_remote_post( $url, [
             'timeout' => 15,
+            'redirection' => 0,
             'headers' => [ 'Content-Type' => 'application/json' ],
-            'body'    => wp_json_encode( $payload ),
+            'body' => wp_json_encode( $payload ),
         ] );
 
         if ( is_wp_error( $response ) ) {
-            $error = $response->get_error_message();
-            LogService::write( $this->getOptionKey(), 'error', "Delivery failed: $error", [] );
-            return [ 'success' => false, 'error' => $error ];
+            LogService::write( $this->getOptionKey(), 'error', 'Messaging transport failure.' );
+            return [ 'success' => false, 'retryable' => true, 'error' => 'Network request failed.' ];
         }
 
-        $code = wp_remote_retrieve_response_code( $response );
+        $code = (int) wp_remote_retrieve_response_code( $response );
         $body = json_decode( wp_remote_retrieve_body( $response ), true );
-
         if ( $code >= 200 && $code < 300 && is_array( $body ) && ! empty( $body['ok'] ) ) {
-            LogService::write( $this->getOptionKey(), 'info', "Delivered to $destination" );
-            return [ 'success' => true ];
+            LogService::write( $this->getOptionKey(), 'info', 'Message delivered.' );
+            return [ 'success' => true, 'retryable' => false ];
         }
 
-        $error = $body['description'] ?? "HTTP $code";
-        LogService::write( $this->getOptionKey(), 'error', "API error: $error", $body );
-        return [ 'success' => false, 'error' => $error ];
+        $retryable = $code === 429 || $code >= 500 || $code === 0
+            || ( $code >= 200 && $code < 300 );
+        LogService::write( $this->getOptionKey(), 'error', 'Messaging API returned HTTP ' . $code );
+        return [ 'success' => false, 'retryable' => $retryable, 'error' => 'HTTP ' . $code ];
     }
 
     /** Convert any CF7 field value (string or array) to a plain string. */
